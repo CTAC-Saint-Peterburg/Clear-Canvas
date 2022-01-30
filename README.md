@@ -6,3 +6,8 @@ ClearCanvas, my little JavaScript experiment
 2. Add JavaScript file
 3. Create Canvas
 --------------------------------------------
+### The base Canvas scene has been created V.0.0.1
+1. Add function canvasSize()
+2. Add function background()
+3. Updating and clearing the scene functions
+--------------------------------------------

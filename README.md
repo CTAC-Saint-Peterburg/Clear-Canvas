@@ -11,3 +11,8 @@ ClearCanvas, my little JavaScript experiment
 2. Add function background()
 3. Updating and clearing the scene functions
 --------------------------------------------
+### a new branch and something else V.0.0.2
+1. Add new branch
+2. Add function render()
+3. Add function clearCanvas()
+-------------------------------------------

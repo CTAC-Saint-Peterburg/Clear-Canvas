@@ -11,8 +11,14 @@ ClearCanvas, my little JavaScript experiment
 2. Add function background()
 3. Updating and clearing the scene functions
 --------------------------------------------
-### a new branch and something else V.0.0.2
+### A new branch and something else V.0.0.2
 1. Add new branch
 2. Add function render()
 3. Add function clearCanvas()
+-------------------------------------------
+### class and lifecycle V.0.0.3
+1. Update render() now you can use simple objects
+2. Add new JS file for classes
+3. Add new Class Cycle
+4. Add function lifeCecle()
 -------------------------------------------

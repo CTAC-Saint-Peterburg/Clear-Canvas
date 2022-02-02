@@ -22,3 +22,9 @@ ClearCanvas, my little JavaScript experiment
 3. Add new Class Cycle
 4. Add function lifeCecle()
 -------------------------------------------
+### Rotate V.0.0.4
+1. Update lifeCycle() now you can use simple objects
+2. Add new Class Triangle
+3. Add new Class Box
+4. Add rotate attr for class
+-------------------------------------------

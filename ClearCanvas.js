@@ -3,13 +3,15 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvasSize(1000, 1000);
 const objectsRendering = new Array();
-let sampleCycle = objectsRendering.push(new Cycle(500, 500, 100, 'tomato', 'Hello, I am sample', 300));
+let sampleCycle = objectsRendering.push(new Cycle(500, 500, 100, 'tomato', 'Hello, I am sample', Infinity));
+let triAngleSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, I am sample', 400);
 //-Функция отрисовки всех элементов
 function drawAll() {
     clearCanvas();
     background('black');
-    render(objectsRendering);
-    lifeCycle(objectsRendering);
+    ctx.translate(0, 0);
+    render(triAngleSample);
+    lifeCycle(triAngleSample);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };
@@ -42,11 +44,15 @@ for(let i = 0; i < data.length; i++) {
 };
 //-Функция фильтрации массива по параметру жизненного цикла объекта
 function lifeCycle(data) {
+    if (Array.isArray(data)) {
     for(let i = data.length - 1; i >= 0; i--) {
         if(data[i].lifeCycle <= 0) {
         data.splice(i, 1);
     }
     }
+} else if (data.lifeCycle <= 0) {
+    data.draw = () => {};
+}
 };
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
 window.onload = drawAll();

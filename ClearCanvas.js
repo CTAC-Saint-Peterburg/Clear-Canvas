@@ -4,14 +4,35 @@ const ctx = canvas.getContext('2d');
 canvasSize(1000, 1000);
 const objectsRendering = new Array();
 let sampleCycle = objectsRendering.push(new Cycle(500, 500, 100, 'tomato', 'Hello, I am sample', Infinity));
-let triAngleSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, I am sample', 400);
+let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
+//-Камера центрирована и двигается в сторону клика
+let cameraX = 0;
+let cameraY = 0;
+let clientX;
+let clientY;
+let movementAngle;
+let angleX = 0;
+let angleY = 0;
+canvas.addEventListener('click', (event) => {
+    clientY = event.clientY;
+    clientX = event.clientX;
+    movementAngle = Math.atan2(clientY - canvas.height / 2, clientX - canvas.height / 2);
+    angleX = Math.cos(movementAngle);
+    angleY = Math.sin(movementAngle);
+    console.log(angleX);
+});
+function camera() {
+    cameraX += angleX;
+    cameraY += angleY;
+    ctx.translate(-cameraX, -cameraY);
+}
 //-Функция отрисовки всех элементов
 function drawAll() {
     clearCanvas();
     background('black');
-    ctx.translate(0, 0);
-    render(triAngleSample);
-    lifeCycle(triAngleSample);
+    camera();
+    render(boxSample);
+    lifeCycle(boxSample);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };

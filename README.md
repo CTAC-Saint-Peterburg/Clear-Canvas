@@ -1,4 +1,4 @@
-# Clear-Canvas Updated <30.01.2022>
+# Clear-Canvas Updated <03.02.2022>
 ClearCanvas, my little JavaScript experiment
 --------------------------------------------
 ### The journey has begun V.0.0.0
@@ -27,4 +27,9 @@ ClearCanvas, my little JavaScript experiment
 2. Add new Class Triangle
 3. Add new Class Box
 4. Add rotate attr for class
+-------------------------------------------
+### Camera V.0.0.5
+1. Add Event.listener with vector definition
+2. Add camera()
+3. Add new branch
 -------------------------------------------

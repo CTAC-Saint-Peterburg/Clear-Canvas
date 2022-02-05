@@ -1,4 +1,4 @@
-# Clear-Canvas Updated <03.02.2022>
+# Clear-Canvas Updated <05.02.2022>
 ClearCanvas, my little JavaScript experiment
 --------------------------------------------
 ### The journey has begun V.0.0.0
@@ -32,4 +32,7 @@ ClearCanvas, my little JavaScript experiment
 1. Add Event.listener with vector definition
 2. Add camera()
 3. Add new branch
+-------------------------------------------
+### Camera-follow branch update V.0.0.6
+1. Add Hypot() for calculating distance
 -------------------------------------------

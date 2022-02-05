@@ -3,9 +3,10 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvasSize(1000, 1000);
 const objectsRendering = new Array();
-let sampleCycle = objectsRendering.push(new Cycle(500, 500, 100, 'tomato', 'Hello, I am sample', Infinity));
+let sampleCycle = objectsRendering.push(new Cycle(500, 500, 110, 'tomato', 'click somewhere on screen', Infinity));
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
-//-Камера центрирована и двигается в сторону клика
+//-Камера центрирована и двигается в сторону клика, а также измеряется дистанция между заданными обьектами
+let cameraObject;
 let cameraX = 0;
 let cameraY = 0;
 let clientX;
@@ -16,23 +17,31 @@ let angleY = 0;
 canvas.addEventListener('click', (event) => {
     clientY = event.clientY;
     clientX = event.clientX;
+    console.log(event);
     movementAngle = Math.atan2(clientY - canvas.height / 2, clientX - canvas.height / 2);
     angleX = Math.cos(movementAngle);
     angleY = Math.sin(movementAngle);
+    let clickObject = new Cycle(event.clientX +cameraX, event.clientY +cameraY, 20, 'white', 'click', Infinity);
+    objectsRendering.push(clickObject);
     console.log(angleX);
 });
 function camera() {
+    let dist = Math.hypot(cameraObject.x - objectsRendering[objectsRendering.length-1].x, cameraObject.y - objectsRendering[objectsRendering.length-1].y);
+    if(dist >=1) {
     cameraX += angleX;
     cameraY += angleY;
+    }
     ctx.translate(-cameraX, -cameraY);
 }
 //-Функция отрисовки всех элементов
 function drawAll() {
     clearCanvas();
     background('black');
+     cameraObject = new Cycle(500 +cameraX, 500 +cameraY, 100, 'gold', 'Hi, I am camera!', Infinity);
     camera();
-    render(boxSample);
-    lifeCycle(boxSample);
+    render(cameraObject);
+    render(objectsRendering);
+    lifeCycle(cameraObject);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };

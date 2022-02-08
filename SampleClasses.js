@@ -9,6 +9,7 @@ class Cycle {
     }
     draw() {
         ctx.beginPath();
+        ctx.shadowBlur = 0;
         ctx.arc(this.x,this.y, this.size, 0, 2* Math.PI, false);
         ctx.fillStyle = this.color;
         ctx.fill();
@@ -36,6 +37,7 @@ class Triangle {
     draw() {
         let height = this.size * (Math.sqrt(3)/2); //200 * Math.cos(Math.PI / 6);
         ctx.beginPath();
+        ctx.shadowBlur = 0;
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotate * Math.PI / 180);
         ctx.translate(-this.x, -this.y);
@@ -63,6 +65,7 @@ class Box {
     }
     draw() {
         ctx.beginPath();
+        ctx.shadowBlur = 0;
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotate * Math.PI / 180);
         ctx.translate(-this.x, -this.y);
@@ -77,3 +80,25 @@ class Box {
         this.lifeCycle -= 1;
     }
 };
+class Mapcycle {
+    constructor(size, color, lifeCycle) {
+        this.x = 0;
+        this.y = 0;
+        this.size = size;
+        this.color = color;
+        this.lifeCycle = lifeCycle;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.shadowColor = 'red';
+        ctx.shadowBlur = 15;
+        ctx.arc(this.x,this.y, this.size, 0, 2* Math.PI, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.lineWidth = 50;
+        ctx.strokeStyle = 'orange';
+        ctx.stroke();
+        ctx.closePath();
+        this.lifeCycle -= 1;
+    }
+}

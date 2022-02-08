@@ -23,7 +23,6 @@ function camera(target) {
     cameraX += angleX;
     cameraY += angleY;
     }
-    ctx.translate(-cameraX, -cameraY);
 }
 //-Функция отривоки массива или обьекта с встроенной функцией draw()
 function render(data) {

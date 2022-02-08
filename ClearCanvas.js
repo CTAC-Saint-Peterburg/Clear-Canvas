@@ -3,6 +3,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvasSize(innerWidth, innerHeight);
 const objectsRendering = new Array();
+let mapCycle = objectsRendering.push(new Mapcycle(1000,'#2f242c', Infinity)); //- 2f242c
 let sampleCycle = objectsRendering.push(new Cycle(500, 500, 110, 'tomato', 'click somewhere on screen', Infinity));
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
 //-Камера центрирована и двигается в сторону клика, а также измеряется дистанция между заданными обьектами
@@ -29,10 +30,11 @@ canvas.addEventListener('click', (event) => {
 function drawAll() {
     clearCanvas();
     background('black');
+    ctx.translate(-cameraX, -cameraY);
      cameraObject = new Cycle(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 100, 'gold', 'Hi, I am camera!', Infinity);
     camera(clickTarget); //-
-    render(cameraObject);
     render(objectsRendering);
+    render(cameraObject);
     lifeCycle(cameraObject);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);

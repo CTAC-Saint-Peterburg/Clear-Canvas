@@ -19,6 +19,7 @@ function background(color) {
 function camera(target) {
     if(target == undefined) return;
     let dist = Math.hypot(cameraObject.x - target.x, cameraObject.y - target.y);
+    console.log(dist);
     if(dist > 3) { //Bug можно найти точку котороя обойдёт проверку
     cameraX += angleX;
     cameraY += angleY;

@@ -8,8 +8,8 @@ let sampleCycle = objectsRendering.push(new Cycle(500, 500, 110, 'tomato', 'clic
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
 //-Камера центрирована и двигается в сторону клика, а также измеряется дистанция между заданными обьектами
 let cameraObject;
-let cameraX = 0;
-let cameraY = 0;
+let cameraX = 0 - innerWidth / 2;
+let cameraY = 700 - innerHeight / 2;
 let clientX;
 let clientY;
 let movementAngle;

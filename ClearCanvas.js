@@ -1,7 +1,7 @@
 //-Создаём Canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-canvasSize(1000, 1000);
+canvasSize(innerWidth, innerHeight);
 const objectsRendering = new Array();
 let sampleCycle = objectsRendering.push(new Cycle(500, 500, 110, 'tomato', 'click somewhere on screen', Infinity));
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
@@ -18,16 +18,16 @@ canvas.addEventListener('click', (event) => {
     clientY = event.clientY;
     clientX = event.clientX;
     console.log(event);
-    movementAngle = Math.atan2(clientY - canvas.height / 2, clientX - canvas.height / 2);
-    angleX = Math.cos(movementAngle);
-    angleY = Math.sin(movementAngle);
+    movementAngle = Math.atan2(clientY - innerHeight / 2, clientX - innerWidth / 2);
+    angleX = Math.floor(Math.cos(movementAngle) * 100) / 100;
+    angleY = Math.floor(Math.sin(movementAngle) * 100) / 100;
     let clickObject = new Cycle(event.clientX +cameraX, event.clientY +cameraY, 20, 'white', 'click', Infinity);
     objectsRendering.push(clickObject);
     console.log(angleX);
 });
 function camera() {
     let dist = Math.hypot(cameraObject.x - objectsRendering[objectsRendering.length-1].x, cameraObject.y - objectsRendering[objectsRendering.length-1].y);
-    if(dist >=1) {
+    if(dist > 3) { //Bug можно найти точку котороя обойдёт проверку
     cameraX += angleX;
     cameraY += angleY;
     }
@@ -37,7 +37,7 @@ function camera() {
 function drawAll() {
     clearCanvas();
     background('black');
-     cameraObject = new Cycle(500 +cameraX, 500 +cameraY, 100, 'gold', 'Hi, I am camera!', Infinity);
+     cameraObject = new Cycle(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 100, 'gold', 'Hi, I am camera!', Infinity);
     camera();
     render(cameraObject);
     render(objectsRendering);

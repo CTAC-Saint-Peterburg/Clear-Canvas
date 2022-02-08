@@ -14,6 +14,7 @@ let clientY;
 let movementAngle;
 let angleX = 0;
 let angleY = 0;
+let clickTarget;
 canvas.addEventListener('click', (event) => {
     clientY = event.clientY;
     clientX = event.clientX;
@@ -21,68 +22,20 @@ canvas.addEventListener('click', (event) => {
     movementAngle = Math.atan2(clientY - innerHeight / 2, clientX - innerWidth / 2);
     angleX = Math.floor(Math.cos(movementAngle) * 100) / 100;
     angleY = Math.floor(Math.sin(movementAngle) * 100) / 100;
-    let clickObject = new Cycle(event.clientX +cameraX, event.clientY +cameraY, 20, 'white', 'click', Infinity);
-    objectsRendering.push(clickObject);
+    clickTarget = new Cycle(clientX +cameraX, clientY +cameraY, 20, 'white', 'click', Infinity);
     console.log(angleX);
 });
-function camera() {
-    let dist = Math.hypot(cameraObject.x - objectsRendering[objectsRendering.length-1].x, cameraObject.y - objectsRendering[objectsRendering.length-1].y);
-    if(dist > 3) { //Bug можно найти точку котороя обойдёт проверку
-    cameraX += angleX;
-    cameraY += angleY;
-    }
-    ctx.translate(-cameraX, -cameraY);
-}
 //-Функция отрисовки всех элементов
 function drawAll() {
     clearCanvas();
     background('black');
      cameraObject = new Cycle(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 100, 'gold', 'Hi, I am camera!', Infinity);
-    camera();
+    camera(clickTarget); //-
     render(cameraObject);
     render(objectsRendering);
     lifeCycle(cameraObject);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
-};
-//-Функция управления размерами Canvas
-function canvasSize(width, height) {
-    canvas.width = width;
-    canvas.height = height;
-};
-//-Функция очистки Canvas
-function clearCanvas() {
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-};
-//-Фукция управления цвета фона Canvas
-function background(color) {
-    ctx.beginPath();
-    ctx.resetTransform();
-    ctx.fillStyle = color;
-    ctx.fillRect (0, 0, canvas.width, canvas.height);
-    ctx.closePath();
-};
-//-Функция отривоки массива или обьекта с встроенной функцией draw()
-function render(data) {
-if (Array.isArray(data)) {
-for(let i = 0; i < data.length; i++) {
-    data[i].draw();
-}
-} else {
-    data.draw();
-}
-};
-//-Функция фильтрации массива по параметру жизненного цикла объекта
-function lifeCycle(data) {
-    if (Array.isArray(data)) {
-    for(let i = data.length - 1; i >= 0; i--) {
-        if(data[i].lifeCycle <= 0) {
-        data.splice(i, 1);
-    }
-    }
-} else if (data.lifeCycle <= 0) {
-    data.draw = () => {};
-}
 };
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
 window.onload = drawAll();

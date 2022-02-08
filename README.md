@@ -1,4 +1,4 @@
-# Clear-Canvas Updated <05.02.2022>
+# Clear-Canvas Updated <08.02.2022>
 ClearCanvas, my little JavaScript experiment
 --------------------------------------------
 ### The journey has begun V.0.0.0
@@ -36,3 +36,8 @@ ClearCanvas, my little JavaScript experiment
 ### Camera-follow branch update V.0.0.6
 1. Add Hypot() for calculating distance
 -------------------------------------------
+### Camera-follow branch update V.0.0.7
+1. fix fullscreen problem
+2. Add Math.floor() to boost performance
+found a Hypot() bug
+------------------------------------------

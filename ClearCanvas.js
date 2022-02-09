@@ -6,6 +6,7 @@ const objectsRendering = new Array();
 let mapCycle = objectsRendering.push(new Mapcycle(1000,'#2f242c', Infinity)); //- 2f242c
 let sampleCycle = objectsRendering.push(new Cycle(0, -700, 120, 'tomato', 'enemy', Infinity));
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
+let trident = objectsRendering.push(new Trident(0,0,0));
 //-Камера центрирована и двигается в сторону клика, а также измеряется дистанция между заданными обьектами
 let cameraObject;
 let cameraX = 0 - innerWidth / 2;

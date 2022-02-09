@@ -108,4 +108,35 @@ class Mapcycle {
         ctx.closePath();
         this.lifeCycle -= 1;
     }
+};
+class Trident {
+    constructor(x,y,rotate) {
+        this.x = x;
+        this.y = y;
+        this.rotate = rotate;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.save()
+        ctx.translate(cameraObject.x, cameraObject.y);
+        ctx.rotate(180 * Math.PI / 180);
+        ctx.moveTo(0, 160);
+        ctx.lineWidth = 15;
+        ctx.lineCap = 'round';
+        ctx.lineTo(0, 120 + 160);
+        ctx.lineTo(40, 120 + 160);
+        ctx.moveTo(0, 120 + 160);
+        ctx.lineTo(-40, 120 +160);
+        ctx.moveTo(0, 120 + 160);
+        ctx.lineTo(0, 180 + 160);
+        ctx.moveTo(40, 120 + 160);
+        ctx.lineTo(40, 180 + 160);
+        ctx.moveTo(-40, 120 + 160);
+        ctx.lineTo(-40, 180 + 160);
+        ctx.strokeStyle = 'tomato';
+        ctx.stroke();
+        ctx.restore();
+        ctx.closePath();
+    }
 }
+

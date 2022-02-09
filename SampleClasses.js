@@ -14,10 +14,17 @@ class Cycle {
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.lineWidth = 5;
-        ctx.fillStyle = '#004777';
-        ctx.font = "30px Arial";
+        ctx.strokeStyle = '#283d3b';
+        ctx.stroke();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.fillStyle = '#d6efff';
+        ctx.font = "35px Arial";
         ctx.textAlign = 'center';
         ctx.fillText(this.text, this.x, this.y);
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
+        ctx.strokeText(this.text, this.x, this.y);
         ctx.closePath();
         this.lifeCycle -= 1;
     }

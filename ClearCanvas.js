@@ -17,15 +17,17 @@ let movementAngle;
 let angleX = 0;
 let angleY = 0;
 let clickTarget;
+let tridentAngle;
 canvas.addEventListener('click', (event) => {
     clientY = event.clientY;
     clientX = event.clientX;
     console.log(event);
     movementAngle = Math.atan2(clientY - innerHeight / 2, clientX - innerWidth / 2);
+    tridentAngle = Math.floor(Math.atan2(clientY - innerHeight / 2, clientX - innerWidth / 2) *100) /100;
     angleX = Math.floor(Math.cos(movementAngle) * 100) / 100;
     angleY = Math.floor(Math.sin(movementAngle) * 100) / 100;
     clickTarget = new Cycle(clientX +cameraX, clientY +cameraY, 20, 'white', 'click', Infinity);
-    console.log(angleX);
+    console.log(tridentAngle);
 });
 //-Функция отрисовки всех элементов
 function drawAll() {
@@ -33,6 +35,7 @@ function drawAll() {
     background('black');
     ctx.translate(-cameraX, -cameraY);
      cameraObject = new Cycle(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 120, 'gold', 'Hi, I am camera!', Infinity);
+     objectsRendering[2].rotate = tridentAngle;
     camera(clickTarget); //-
     render(objectsRendering);
     render(cameraObject);

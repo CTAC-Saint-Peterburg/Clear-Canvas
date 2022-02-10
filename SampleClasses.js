@@ -119,7 +119,7 @@ class Trident {
         ctx.beginPath();
         ctx.save()
         ctx.translate(cameraObject.x, cameraObject.y);
-        ctx.rotate(180 * Math.PI / 180);
+        ctx.rotate(this.rotate - 1.55); //-нужно переделать
         ctx.moveTo(0, 160);
         ctx.lineWidth = 15;
         ctx.lineCap = 'round';

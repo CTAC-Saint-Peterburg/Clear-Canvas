@@ -18,6 +18,8 @@ let angleX = 0;
 let angleY = 0;
 let clickTarget;
 let tridentAngle;
+let keyBoardBtn = {q: false, w: false, reloadQ: 0, reloadW: 0};
+let tridentMove = {x: 0, y: 0};
 canvas.addEventListener('click', (event) => {
     clientY = event.clientY;
     clientX = event.clientX;
@@ -28,6 +30,17 @@ canvas.addEventListener('click', (event) => {
     angleY = Math.floor(Math.sin(movementAngle) * 100) / 100;
     clickTarget = new Cycle(clientX +cameraX, clientY +cameraY, 20, 'white', 'click', Infinity);
     console.log(tridentAngle);
+});
+//-Функция отслеживания нажатия кнопки Q и W
+window.addEventListener('keyup', (event) => {
+    if (event.code == 'KeyQ') {
+        keyBoardBtn.q = true;
+        console.log('Q');
+    };
+    if (event.code == 'KeyW') {
+        keyBoardBtn.w = true;
+        console.log('W');
+    };
 });
 //-Функция отрисовки всех элементов
 function drawAll() {

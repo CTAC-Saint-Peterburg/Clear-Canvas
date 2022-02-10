@@ -116,9 +116,20 @@ class Trident {
         this.rotate = rotate;
     }
     draw() {
+        if(keyBoardBtn.q == true) {
+        tridentMove.x += angleX * 3;
+        tridentMove.y += angleY * 3;
+        keyBoardBtn.reloadQ += 1;
+        if(keyBoardBtn.reloadQ >= 150) {
+            tridentMove.x = 0;
+            tridentMove.y = 0;
+            keyBoardBtn.reloadQ = 0;
+            keyBoardBtn.q = false;
+        }
+        };
         ctx.beginPath();
         ctx.save()
-        ctx.translate(cameraObject.x, cameraObject.y);
+        ctx.translate(cameraObject.x + tridentMove.x, cameraObject.y + tridentMove.y);
         ctx.rotate(this.rotate - 1.55); //-нужно переделать
         ctx.moveTo(0, 160);
         ctx.lineWidth = 15;

@@ -117,8 +117,8 @@ class Trident {
     }
     draw() {
         if(keyBoardBtn.q == true) {
-        tridentMove.x += angleX * 3;
-        tridentMove.y += angleY * 3;
+        tridentMove.x += qangle.x * 3;
+        tridentMove.y += qangle.y * 3;
         keyBoardBtn.reloadQ += 1;
         if(keyBoardBtn.reloadQ >= 150) {
             tridentMove.x = 0;
@@ -129,7 +129,7 @@ class Trident {
         };
         ctx.beginPath();
         ctx.save()
-        ctx.translate(cameraObject.x + tridentMove.x, cameraObject.y + tridentMove.y);
+        ctx.translate(this.x + tridentMove.x, this.y + tridentMove.y);
         ctx.rotate(this.rotate - 1.55); //-нужно переделать
         ctx.moveTo(0, 160);
         ctx.lineWidth = 15;

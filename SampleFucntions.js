@@ -20,9 +20,18 @@ function camera(target) {
     if(target == undefined) return;
     let dist = Math.hypot(cameraObject.x - target.x, cameraObject.y - target.y);
     // console.log(dist);
-    if(dist > 3) { //Bug можно найти точку котороя обойдёт проверку
-    cameraX += angleX;
-    cameraY += angleY;
+    if(dist > 3) { //Bug можно найти точку которая обойдёт проверку
+        if(keyBoardBtn.w == true) {
+            keyBoardBtn.reloadW += 1;
+            lerpActive = 3;
+            if(keyBoardBtn.reloadW >= 100) {
+                lerpActive = 1;
+                keyBoardBtn.reloadW = 0;
+                keyBoardBtn.w = false;
+            }
+        }
+    cameraX += angleX * lerpActive;
+    cameraY += angleY * lerpActive;
     }
 }
 //-Функция отривоки массива или обьекта с встроенной функцией draw()

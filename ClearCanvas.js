@@ -40,16 +40,20 @@ canvas.addEventListener('click', (event) => {
 });
 //-Функция отслеживания нажатия кнопки Q и W
 window.addEventListener('keyup', (event) => {
+    if (keyBoardBtn.q == false) {
     if (event.code == 'KeyQ') {
         qangle.x = angleX;
         qangle.y = angleY;
         keyBoardBtn.q = true;
         console.log('Q');
     };
+};
+if (keyBoardBtn.w == false) {
     if (event.code == 'KeyW') {
         keyBoardBtn.w = true;
         console.log('W');
     };
+};
 });
 //-Функция отрисовки всех элементов
 function drawAll() {

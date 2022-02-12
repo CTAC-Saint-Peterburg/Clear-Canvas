@@ -1,4 +1,4 @@
-class Cycle {
+class PlayerClass {
     constructor(x, y, size, color, text, lifeCycle) {
         this.x = x;
         this.y = y;
@@ -116,20 +116,27 @@ class Trident {
         this.rotate = rotate;
     }
     draw() {
+        if (keyBoardBtn.q == false) {
+            trident.x = player.x;
+            trident.y = player.y;
+        };
         if(keyBoardBtn.q == true) {
         tridentMove.x += qangle.x * 3;
         tridentMove.y += qangle.y * 3;
         keyBoardBtn.reloadQ += 1;
         if(keyBoardBtn.reloadQ >= 150) {
+            trident.x = player.x;
+            trident.y = player.y;
             tridentMove.x = 0;
             tridentMove.y = 0;
             keyBoardBtn.reloadQ = 0;
+            tridentPlayer.rotate = tridentAngle;
             keyBoardBtn.q = false;
         }
         };
         ctx.beginPath();
         ctx.save()
-        ctx.translate(this.x + tridentMove.x, this.y + tridentMove.y);
+        ctx.translate(trident.x + tridentMove.x, trident.y + tridentMove.y);
         ctx.rotate(this.rotate - 1.55); //-нужно переделать
         ctx.moveTo(0, 160);
         ctx.lineWidth = 15;

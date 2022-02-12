@@ -18,7 +18,7 @@ function background(color) {
 //-Функция движения камеры
 function camera(target) {
     if(target == undefined) return;
-    let dist = Math.hypot(cameraObject.x - target.x, cameraObject.y - target.y);
+    let dist = Math.hypot(player.x - target.x, player.y - target.y);
     // console.log(dist);
     if(dist > 3) { //Bug можно найти точку которая обойдёт проверку
         if(keyBoardBtn.w == true) {
@@ -30,8 +30,6 @@ function camera(target) {
                 keyBoardBtn.w = false;
             }
         }
-    cameraX += angleX * lerpActive;
-    cameraY += angleY * lerpActive;
     }
 }
 //-Функция отривоки массива или обьекта с встроенной функцией draw()

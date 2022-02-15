@@ -4,11 +4,28 @@
     <head>
         <meta charset="utf-8" />
         <title>ClearCanvas</title>
+        <link rel="stylesheet" href="style.css">
     </head>
-    <body style="margin: 0px;">
-        <canvas id="canvas"></canvas>
+    <body>
+        <canvas id="canvas" style="display: none;"></canvas>
         <script src="SampleFucntions.js"></script>
         <script src="SampleClasses.js"></script>
         <script src="ClearCanvas.js"></script>
+        <div class="main_div">
+            <div class="middle_div">
+                <div class="play_div">
+                    <h2>Enter your name:</h2>
+                    <input type="text" maxlength="14">
+                    <button onclick="canvas.style.display = ''">play</button>
+                </div>
+                <div class="customization_div">
+                    <h2>Change your skin</h2>
+                </div>
+                <div class="leaderboard_div">
+                </div>
+                <div class="shop_div"></div>
+                <div class="info_div"></div>
+            </div>
+        </div>
     </body>
 </html>

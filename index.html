@@ -13,18 +13,39 @@
         <script src="ClearCanvas.js"></script>
         <div class="main_div">
             <div class="middle_div">
-                <div class="play_div">
+                <div class="block_div">
+                    <div class="enter_game_div">
                     <h2>Enter your name:</h2>
+                    <h1>Unnnamed</h1>
                     <input type="text" maxlength="14">
-                    <button onclick="canvas.style.display = ''">play</button>
+                    <button class="accept_button" onclick="canvas.style.display = ''">play</button>
+                    </div>
                 </div>
-                <div class="customization_div">
+                <div class="block_div">
                     <h2>Change your skin</h2>
+                    <div class="change_skin"></div>
+                    <div class="skin_buttons">
+                        <button>previous</button>
+                        <button>Accept</button>
+                        <button>next</button>
+                    </div>
                 </div>
-                <div class="leaderboard_div">
+                <div class="block_div">
+                    <h2>Shop</h2>
+                    <button>open</button>
                 </div>
-                <div class="shop_div"></div>
-                <div class="info_div"></div>
+                <div class="block_div">
+                    <h2>Leaderboard</h2>
+                    <div class="table_leaderboard">
+                        <div><h3>All-time</h3></div>
+                        <div><h3>month</h3></div>
+                        <div><h3>today</h3></div>
+                    </div>
+                </div>
+                <div class="block_div">
+                    <h2>Info</h2>
+                    <button>open</button>
+                </div>
             </div>
         </div>
     </body>

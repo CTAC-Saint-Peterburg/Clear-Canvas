@@ -9,7 +9,7 @@ body {
     margin:0 auto;
     top: 10vh;
     width: 80vw;
-    height: 1200px;
+    height: 100%;
     background-color: #2a2b2a;
     border-radius: 50px;
 }
@@ -24,38 +24,44 @@ body {
     width: 100%;
     height: 90%;
 }
-.play_div {
+.block_div {
     position: relative;
     width: 500px;
     height: 500px;
     background-color: #545e56;
     border-radius: 25px;
 }
-.customization_div {
+.accept_button {
     position: relative;
-    width: 500px;
-    height: 500px;
-    background-color: #545e56;
-    border-radius: 25px;
+    margin: 20px 0 0 0;
+    left: 175px;
+    height: 60px;
+    width: 150px;
+    font-size: 22px;
+    font-weight: 600;
+    color: aliceblue;
+    background-color: #90e39a;
+    border-radius: 26px;
+    border: none;
 }
-.leaderboard_div {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    background-color: #545e56;
-    border-radius: 25px;
+.enter_game_div > h1 {
+    margin: 0 0 0 0;
+    color: #90e39a;
+    text-align: center;
 }
-.shop_div {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    background-color: #545e56;
-    border-radius: 25px;
+.enter_game_div > input {
+    margin: 20px 10% 0 10%;
+    width: 80%;
 }
-.info_div {
+.table_leaderboard {
     position: relative;
-    width: 500px;
-    height: 500px;
-    background-color: #545e56;
-    border-radius: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    height: 400px;
+}
+.table_leaderboard > div > h3 {
+    margin:  0 0 0 0;
+    font-size: 22px;
+    text-align: center;
 }

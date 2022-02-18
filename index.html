@@ -7,7 +7,8 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <canvas id="canvas" style="display: none;"></canvas>
+        <canvas id="canvas"></canvas>
+        <script src="htmlControl.js"></script>
         <script src="SampleFucntions.js"></script>
         <script src="SampleClasses.js"></script>
         <script src="ClearCanvas.js"></script>
@@ -16,16 +17,16 @@
                 <div class="block_div">
                     <h2>Enter your name:</h2>
                     <div class="enter_game_div">
-                    <h1>Unnamed</h1>
-                    <input type="text" maxlength="14">
-                    <button class="accept_button" onclick="canvas.style.display = ''">play</button>
+                    <h1 id="PlayerNameOne">Unnamed</h1>
+                    <input type="text" id="nameInput" oninput="enterNickName()" maxlength="14">
+                    <button class="accept_button" onclick="openCanvas()">play</button>
                     </div>
                 </div>
                 <div class="block_div">
                     <h2 class="skin_view_header">Change your skin</h2>
                     <div class="change_skin"></div>
                     <div class="skin_view">
-                        <h2>Unnnamed</h2>
+                        <h2 id="PlayerNameTwo">Unnnamed</h2>
                     </div>
                     <div class="skin_buttons">
                         <button class="prev_next_button">previous</button>

@@ -4,6 +4,9 @@ body {
     font-family: Arial;
     color: antiquewhite;
 }
+canvas {
+    display: none;
+}
 .main_div {
     position: relative;
     margin:0 auto;

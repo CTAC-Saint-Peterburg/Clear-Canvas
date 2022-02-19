@@ -13,6 +13,7 @@ let movementAngle;
 let angleX = 0;
 let angleY = 0;
 let player = new PlayerClass(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 120, skinOptions.selectedColor, playerNickName, Infinity);
+let enemy = new PlayerClass(0, -700, 120, 'green', 'enemy', Infinity);
 //-
 let qangle = {x: 0, y: 0};
 let clickTarget;
@@ -22,6 +23,7 @@ let tridentMove = {x: 0, y: 0};
 let trident = {x: 0, y: 0};
 let tridentPlayer = new Trident(player.x,player.y,0);
 let lerpActive = 1;
+let tridentCollisionModel = new PlayerClass(tridentPlayer.x, tridentPlayer.y, 45, 'white', 'collision', Infinity);
 //-
 canvas.addEventListener('click', (event) => {
     clientY = event.clientY;
@@ -64,16 +66,12 @@ function drawAll() {
     render(objectsRendering);
     render(player);
     render(tridentPlayer);
+    render(enemy);
+    // render(tridentCollisionModel); визуализациия коллизии
     update();
+    crash(tridentCollisionModel,enemy);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };
-function update() {
-    cameraX += angleX * lerpActive;
-    cameraY += angleY * lerpActive;
-    player.x += angleX * lerpActive;
-    player.y += angleY * lerpActive;
-
-}
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
 window.onload = drawAll();

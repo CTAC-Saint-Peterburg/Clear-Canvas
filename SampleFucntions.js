@@ -19,8 +19,13 @@ function background(color) {
 function camera(target) {
     if(target == undefined) return;
     let dist = Math.hypot(player.x - target.x, player.y - target.y);
-    // console.log(dist);
-    if(dist > 3) { //Bug можно найти точку которая обойдёт проверку
+    // console.log(dist); //проблема
+    if (dist > 3) {
+        cameraX += angleX * lerpActive;
+        cameraY += angleY * lerpActive;
+        player.x += angleX * lerpActive;
+        player.y += angleY * lerpActive;
+        }
         if(keyBoardBtn.w == true) {
             keyBoardBtn.reloadW += 1;
             lerpActive = 3;
@@ -30,7 +35,6 @@ function camera(target) {
                 keyBoardBtn.w = false;
             }
         }
-    }
 }
 //-Функция отривоки массива или обьекта с встроенной функцией draw()
 function render(data) {
@@ -53,4 +57,18 @@ function lifeCycle(data) {
 } else if (data.lifeCycle <= 0) {
     data.draw = () => {};
 }
+};
+function crash(ObjectOne, ObjectTwo) {
+    let dist = Math.hypot(ObjectOne.x - ObjectTwo.x, ObjectOne.y - ObjectTwo.y);
+    // console.log(dist);
+    if (dist < ObjectOne.size + ObjectTwo.size) {alert('works')};
+};
+function update() { 
+    if(keyBoardBtn.q == false) {
+    tridentCollisionModel.x = trident.x + angleX * 300;
+    tridentCollisionModel.y = trident.y + angleY * 300;
+    } else if (keyBoardBtn.q == true) {
+        tridentCollisionModel.x += qangle.x * 3;
+        tridentCollisionModel.y += qangle.y * 3;
+    }
 };

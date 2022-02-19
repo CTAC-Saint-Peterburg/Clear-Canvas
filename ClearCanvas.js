@@ -12,7 +12,7 @@ let clientY;
 let movementAngle;
 let angleX = 0;
 let angleY = 0;
-let player = new PlayerClass(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 120, 'gold', playerNickName, Infinity);
+let player = new PlayerClass(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 120, skinOptions.selectedColor, playerNickName, Infinity);
 //-
 let qangle = {x: 0, y: 0};
 let clickTarget;

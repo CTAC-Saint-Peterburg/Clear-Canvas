@@ -6,6 +6,7 @@ body {
 }
 canvas {
     display: none;
+    z-index: 1;
 }
 .main_div {
     position: relative;
@@ -150,4 +151,17 @@ canvas {
 .your_position_leaderboard > h3 > p {
     margin: 0 0 0 0;
     background-color: #283d3b;
+}
+.gameOverUI {
+    position: absolute;
+    display: none;
+    z-index: 2;
+    top: 200px;
+    left: 10vh;
+    height: 400px;
+    width: 80vw;
+    background-color: #545e56;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 36px;
 }

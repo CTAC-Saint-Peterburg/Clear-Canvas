@@ -58,10 +58,10 @@ function lifeCycle(data) {
     data.draw = () => {};
 }
 };
-function crash(ObjectOne, ObjectTwo) {
+function crash(ObjectOne, ObjectTwo, eventfunction) {
     let dist = Math.hypot(ObjectOne.x - ObjectTwo.x, ObjectOne.y - ObjectTwo.y);
     // console.log(dist);
-    if (dist < ObjectOne.size + ObjectTwo.size) {alert('works')};
+    if (dist < ObjectOne.size + ObjectTwo.size) { eventfunction() };
 };
 function update() { 
     if(keyBoardBtn.q == false) {
@@ -72,3 +72,6 @@ function update() {
         tridentCollisionModel.y += qangle.y * 3;
     }
 };
+function hit() {
+    gameOver();
+}

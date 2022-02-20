@@ -23,4 +23,10 @@ function skinColorChange(PlusORMinus) {
 }
 function acceptSkinColor() {
     skinOptions.selectedColor = skinOptions.colors[skinOptions.counter];
+};
+function pageReload() {
+    location.reload();
+};
+function gameOver() {
+    document.querySelector('.gameOverUI').style.display = 'block';
 }

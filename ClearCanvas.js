@@ -69,7 +69,7 @@ function drawAll() {
     render(enemy);
     // render(tridentCollisionModel); визуализациия коллизии
     update();
-    crash(tridentCollisionModel,enemy);
+    crash(tridentCollisionModel,enemy, hit);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };

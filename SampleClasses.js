@@ -185,6 +185,7 @@ class GUI {
         ctx.fillText('W', this.x + 160, this.y + this.size * 2);
         ctx.textAlign = 'center';
         ctx.closePath();
+        if (keyBoardBtn.q == false) {
         //trident icon
         ctx.beginPath();
         ctx.moveTo(this.x, this.y + 40);
@@ -200,7 +201,51 @@ class GUI {
         ctx.strokeStyle = 'rgba(39, 41, 50, 0.3)';
         ctx.stroke();
         ctx.closePath();
-
+        }
+        if (keyBoardBtn.q == true) {
+            let counter;
+            if (keyBoardBtn.reloadQ <=50) counter = 3;
+            if (keyBoardBtn.reloadQ <=100 && keyBoardBtn.reloadQ > 50) counter = 2;
+            if (keyBoardBtn.reloadQ <=150 && keyBoardBtn.reloadQ > 100) counter = 1;
+            ctx.beginPath();
+            ctx.fillStyle = '#004777';
+            ctx.font = "80px Arial";
+            ctx.fillText(counter, this.x, this.y + 25);
+            ctx.textAlign = 'center';
+            ctx.closePath();
+        }
+        if(keyBoardBtn.w == false) {
+        //boost icon
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        //>
+        ctx.moveTo(this.x + 170, this.y);
+        ctx.lineTo(this.x + 140, this.y -15);
+        ctx.moveTo(this.x + 170, this.y);
+        ctx.lineTo(this.x + 140, this.y +15);
+        ctx.moveTo(this.x + 170, this.y);
+        //>>
+        ctx.moveTo(this.x + 190, this.y);
+        ctx.lineTo(this.x + 160, this.y -20);
+        ctx.moveTo(this.x + 190, this.y);
+        ctx.lineTo(this.x + 160, this.y +20);
+        ctx.strokeStyle = 'rgba(39, 41, 50, 0.3)';
+        ctx.stroke();
+        ctx.closePath();
+        }
+        if (keyBoardBtn.w == true) {
+            let counter;
+            if (keyBoardBtn.reloadW <=33) counter = 3;
+            if (keyBoardBtn.reloadW <=66 && keyBoardBtn.reloadW > 33) counter = 2;
+            if (keyBoardBtn.reloadW <=100 && keyBoardBtn.reloadW > 66) counter = 1;
+            ctx.beginPath();
+            ctx.fillStyle = '#004777';
+            ctx.font = "80px Arial";
+            ctx.fillText(counter, this.x + 160, this.y + 25);
+            ctx.textAlign = 'center';
+            ctx.closePath();
+        }
     }
 };
 

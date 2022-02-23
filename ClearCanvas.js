@@ -24,6 +24,7 @@ let trident = {x: 0, y: 0};
 let tridentPlayer = new Trident(player.x,player.y,0);
 let lerpActive = 1;
 let tridentCollisionModel = new PlayerClass(tridentPlayer.x, tridentPlayer.y, 45, 'white', 'collision', Infinity);
+let controlUI = new GUI(innerWidth / 10, innerHeight, 60, 'rgba(231, 236, 239, 0.5)');
 //-
 canvas.addEventListener('click', (event) => {
     clientY = event.clientY;
@@ -67,6 +68,7 @@ function drawAll() {
     render(player);
     render(tridentPlayer);
     render(enemy);
+    render(controlUI);
     // render(tridentCollisionModel); визуализациия коллизии
     update();
     crash(tridentCollisionModel,enemy, hit);

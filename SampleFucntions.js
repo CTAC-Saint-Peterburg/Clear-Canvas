@@ -25,6 +25,8 @@ function camera(target) {
         cameraY += angleY * lerpActive;
         player.x += angleX * lerpActive;
         player.y += angleY * lerpActive;
+        controlUI.x += angleX * lerpActive;
+        controlUI.y += angleY * lerpActive;
         }
         if(keyBoardBtn.w == true) {
             keyBoardBtn.reloadW += 1;

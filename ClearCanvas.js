@@ -68,10 +68,12 @@ function drawAll() {
     render(player);
     render(tridentPlayer);
     render(enemy);
+    lifeCycle(enemy);
     render(controlUI);
     // render(tridentCollisionModel); визуализациия коллизии
     update();
     crash(tridentCollisionModel,enemy, hit);
+    evade(player, objectsRendering[0], outOfMap);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };

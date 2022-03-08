@@ -65,6 +65,11 @@ function crash(ObjectOne, ObjectTwo, eventfunction) {
     // console.log(dist);
     if (dist < ObjectOne.size + ObjectTwo.size) { eventfunction() };
 };
+function evade(ObjectOne, ObjectTwo, eventfunction) {
+    let dist = Math.hypot(ObjectOne.x - ObjectTwo.x, ObjectOne.y - ObjectTwo.y);
+    // console.log(dist);
+    if (dist > ObjectOne.size + ObjectTwo.size) { eventfunction() };
+};
 function update() { 
     if(keyBoardBtn.q == false) {
     tridentCollisionModel.x = trident.x + angleX * 300;
@@ -75,5 +80,29 @@ function update() {
     }
 };
 function hit() {
+    enemy.lifeCycle = 0;
     gameOver();
-}
+};
+//-needFix
+let outCountdown = 100;
+//---
+function outOfMap() {
+        ctx.beginPath();
+        ctx.shadowBlur = 0;
+        ctx.rect(0 +cameraX, 0 +cameraY, innerWidth, innerHeight);
+        ctx.fillStyle = 'rgba(255, 99, 71, 0.5)';
+        ctx.fill();
+        ctx.fillStyle = 'orange';
+        ctx.font = "40px Arial";
+        ctx.textAlign = 'center';
+        ctx.fillText("Return to the battlefield", innerWidth / 2 +cameraX, innerHeight / 3 +cameraY);
+        ctx.fillStyle = 'white';
+        ctx.font = "30px Arial";
+        ctx.textAlign = 'center';
+        ctx.fillText(outCountdown, innerWidth / 2 +cameraX, innerHeight / 2 +cameraY);
+        ctx.closePath();
+        outCountdown--;
+        if (outCountdown < 0) {
+            gameOver();
+        }
+};

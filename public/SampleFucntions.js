@@ -106,3 +106,15 @@ function outOfMap() {
             gameOver();
         }
 };
+function multiplayer() {
+
+};
+function gameSetup() {
+    console.log("Загрузка и настройка завершина...");
+    socket.on('listenServerSetup', setup);
+};
+function setup(playerSetup) {
+    console.log('получил' + playerSetup.currentRoom);
+    alert(playerSetup.Pcords);
+    socket.emit('listenServerSetup');
+};

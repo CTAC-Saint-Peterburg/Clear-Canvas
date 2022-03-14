@@ -76,8 +76,9 @@ function drawAll() {
     update();
     crash(tridentCollisionModel,enemy, hit);
     evade(player, objectsRendering[0], outOfMap);
+    multiplayer();
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
-window.onload = drawAll();
+window.onload = gameSetup(), drawAll();

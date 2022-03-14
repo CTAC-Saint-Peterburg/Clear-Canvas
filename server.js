@@ -31,5 +31,4 @@ function newConnection(socket) {
 function definePlayerSetup() {
     playerSetup.Pcords++;
     if(playerSetup.Pcords > 1) {playerSetup.Pcords = 0;}
-    console.log(playerSetup.Pcords + 'server side');
-}
+};

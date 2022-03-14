@@ -115,6 +115,13 @@ function gameSetup() {
 };
 function setup(playerSetup) {
     console.log('получил' + playerSetup.currentRoom);
-    alert(playerSetup.Pcords);
+    if (playerSetup.Pcords == 0) {
+        cameraY = 700 - innerHeight / 2;
+        player.y = innerHeight / 2 +cameraY;
+    } else if (playerSetup.Pcords == 1) {
+        cameraY = -700 - innerHeight / 2;
+        player.y = innerHeight / 2 +cameraY;
+        controlUI.y = -400;
+    }
     socket.emit('listenServerSetup');
 };

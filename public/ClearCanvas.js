@@ -74,7 +74,7 @@ function drawAll() {
     render(controlUI);
     // render(tridentCollisionModel); визуализациия коллизии
     update();
-    crash(tridentCollisionModel,enemy, hit);
+    // crash(tridentCollisionModel,enemy, hit);
     evade(player, objectsRendering[0], outOfMap);
     multiplayer();
 //-Специальная функция для зацикливания requestAnimationFrame

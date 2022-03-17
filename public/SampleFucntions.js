@@ -106,27 +106,31 @@ function outOfMap() {
             gameOver();
         }
 };
-let test;
 function multiplayer() {
-test = {
-    x: 'hello',
-    p: localId,
+    let playerToServer;
+    playerToServer = {
+    x: Math.floor(player.x * 100) / 100,
+    y: Math.floor(player.y * 100) / 100,
+    color: player.color,
+    text: player.text,
+    lifeCycle: 10000,
+    room: currentRoom,
 };
-socket.on('kk', (kok)=> {
-    if (kok.p == 1) {
-    alert(kok.x);
-    } else if (kok.p == 2) {
-        alert('hurray');
-    }
+socket.on('playerData', (playerToClient)=> {
+    enemy.x = playerToClient.x;
+    enemy.y = playerToClient.y;
+    enemy.color = playerToClient.color;
+    enemy.text = playerToClient.text;
+    enemy.lifeCycle = playerToClient.lifeCycle;
 });
-socket.emit('kk', test);
+socket.emit('playerData', playerToServer);
 };
 function gameSetup() {
     console.log("Загрузка и настройка завершина...");
     socket.on('listenServerSetup', setup);
 };
 function setup(playerSetup) {
-    localId = playerSetup.localId;
+    currentRoom = playerSetup.currentRoom;
     console.log('подключён к серверу:' + playerSetup.currentRoom);
     if (playerSetup.Pcords == 0) {
         cameraY = 700 - innerHeight / 2;

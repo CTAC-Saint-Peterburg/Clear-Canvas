@@ -15,7 +15,7 @@ let myServer = {
 };
 //---------------------------------
 //-список переменных сервера
-let playerSetup = {Pcords: 0, currentRoom: 0, localId: 1}; //- сетап позиции старта
+let playerSetup = {Pcords: 0, currentRoom: 0}; //- сетап позиции старта
 //-----------------
 io.sockets.on('connection', newConnection);
 function newConnection(socket) {
@@ -27,16 +27,13 @@ function newConnection(socket) {
     console.log('Комната:'+ playerSetup.currentRoom);
     socket.emit('listenServerSetup', playerSetup); //-высылаем настройки спавна
     socket.on('listenServerSetup', definePlayerSetup);
-    socket.on('kk', ksok);
-}
-function definePlayerSetup() {
-    playerSetup.Pcords++;
-    playerSetup.localId++;
-    if(playerSetup.Pcords > 1) {playerSetup.Pcords = 0;}
-    if(playerSetup.localId > 2) {playerSetup.localId = 1;}
-};
-function ksok(test) {
-    let kek = test;
-console.log(kek.x);
-io.to(1).emit('kk', kek);
+    socket.on('playerData', ksok);
+    function definePlayerSetup() {
+        playerSetup.Pcords++;
+        if(playerSetup.Pcords > 1) {playerSetup.Pcords = 0;}
+    }
+    function ksok(playerToServer) {
+        let playerToClient = playerToServer;
+    socket.to(playerToServer.room).emit('playerData', playerToClient);
+    }
 };

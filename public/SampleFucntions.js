@@ -106,15 +106,28 @@ function outOfMap() {
             gameOver();
         }
 };
+let test;
 function multiplayer() {
-
+test = {
+    x: 'hello',
+    p: localId,
+};
+socket.on('kk', (kok)=> {
+    if (kok.p == 1) {
+    alert(kok.x);
+    } else if (kok.p == 2) {
+        alert('hurray');
+    }
+});
+socket.emit('kk', test);
 };
 function gameSetup() {
     console.log("Загрузка и настройка завершина...");
     socket.on('listenServerSetup', setup);
 };
 function setup(playerSetup) {
-    console.log('получил' + playerSetup.currentRoom);
+    localId = playerSetup.localId;
+    console.log('подключён к серверу:' + playerSetup.currentRoom);
     if (playerSetup.Pcords == 0) {
         cameraY = 700 - innerHeight / 2;
         player.y = innerHeight / 2 +cameraY;

@@ -136,7 +136,11 @@ class Trident {
         };
         ctx.beginPath();
         ctx.save()
-        ctx.translate(trident.x + tridentMove.x, trident.y + tridentMove.y);
+        //-костыль для мультиплеера
+        let proxTraslate = {x: trident.x + tridentMove.x, y: trident.y + tridentMove.y};
+        tridentTranslateData = proxTraslate;
+        ctx.translate(proxTraslate.x, proxTraslate.y);
+        //-----
         ctx.rotate(this.rotate - 1.55); //-нужно переделать
         ctx.moveTo(0, 160);
         ctx.lineWidth = 15;
@@ -166,7 +170,7 @@ class EnemyTrident {
     draw() {
         ctx.beginPath();
         ctx.save();
-        ctx.translate(enemy.x, enemy.y);
+        ctx.translate(enemyTridentTranslate.x, enemyTridentTranslate.y);
         ctx.rotate(this.rotate - 1.55); //-нужно переделать
         ctx.moveTo(0, 160);
         ctx.lineWidth = 15;

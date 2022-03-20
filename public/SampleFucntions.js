@@ -116,6 +116,7 @@ function multiplayer() {
     lifeCycle: 10000,
     room: currentRoom,
     tridentRotate: tridentPlayer.rotate,
+    tridentTranslate: tridentTranslateData,
 };
 socket.on('playerData', (playerToClient)=> {
     enemy.x = playerToClient.x;
@@ -124,6 +125,7 @@ socket.on('playerData', (playerToClient)=> {
     enemy.text = playerToClient.text;
     enemy.lifeCycle = playerToClient.lifeCycle;
     tridentEnemy.rotate = playerToClient.tridentRotate;
+    enemyTridentTranslate = playerToClient.tridentTranslate;
 });
 socket.emit('playerData', playerToServer);
 };

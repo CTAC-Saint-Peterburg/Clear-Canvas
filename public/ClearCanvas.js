@@ -29,6 +29,8 @@ let lerpActive = 1;
 let tridentCollisionModel = new PlayerClass(tridentPlayer.x, tridentPlayer.y, 45, 'white', 'collision', Infinity);
 let controlUI = new GUI(innerWidth / 10, innerHeight, 60, 'rgba(231, 236, 239, 0.5)');
 let currentRoom;
+let tridentTranslateData; //- данные о ctx.tranlate()
+let enemyTridentTranslate = {x: enemy.x, y: enemy.y};
 //-
 canvas.addEventListener('click', (event) => {
     clientY = event.clientY;

@@ -157,6 +157,36 @@ class Trident {
         ctx.closePath();
     }
 }
+class EnemyTrident {
+    constructor(x,y,rotate) {
+        this.x = x;
+        this.y = y;
+        this.rotate = rotate;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.save();
+        ctx.translate(enemy.x, enemy.y);
+        ctx.rotate(this.rotate - 1.55); //-нужно переделать
+        ctx.moveTo(0, 160);
+        ctx.lineWidth = 15;
+        ctx.lineCap = 'round';
+        ctx.lineTo(0, 120 + 160);
+        ctx.lineTo(40, 120 + 160);
+        ctx.moveTo(0, 120 + 160);
+        ctx.lineTo(-40, 120 +160);
+        ctx.moveTo(0, 120 + 160);
+        ctx.lineTo(0, 180 + 160);
+        ctx.moveTo(40, 120 + 160);
+        ctx.lineTo(40, 180 + 160);
+        ctx.moveTo(-40, 120 + 160);
+        ctx.lineTo(-40, 180 + 160);
+        ctx.strokeStyle = 'tomato';
+        ctx.stroke();
+        ctx.restore();
+        ctx.closePath();
+    }
+};
 class GUI {
     constructor(x, y, size, color) {
         this.x = x;

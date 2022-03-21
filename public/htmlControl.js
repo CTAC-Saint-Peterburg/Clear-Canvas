@@ -27,6 +27,11 @@ function acceptSkinColor() {
 function pageReload() {
     location.reload();
 };
-function gameOver() {
+function gameOver(result) {
     document.querySelector('.gameOverUI').style.display = 'block';
+    if (result == 1) {
+        document.getElementById('gameOverUItext').innerHTML = 'You win!';
+    } else if (result == 0) {
+        document.getElementById('gameOverUItext').innerHTML = 'You lose;(';
+    } else {console.log('game result error')};
 }

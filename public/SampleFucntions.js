@@ -81,7 +81,7 @@ function update() {
 };
 function hit() {
     enemy.lifeCycle = 0;
-    gameOver();
+    gameOver(1);
 };
 //-needFix
 let outCountdown = 100;
@@ -103,7 +103,7 @@ function outOfMap() {
         ctx.closePath();
         outCountdown--;
         if (outCountdown < 0) {
-            gameOver();
+            gameOver(0);
         }
 };
 function multiplayer() {

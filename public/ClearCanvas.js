@@ -15,7 +15,7 @@ let movementAngle;
 let angleX = 0;
 let angleY = 0;
 let player = new PlayerClass(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 120, skinOptions.selectedColor, playerNickName, Infinity);
-let enemy = new PlayerClass(0, -700, 120, 'green', 'enemy', Infinity);
+let enemy = new PlayerClass(0, -1700, 120, 'green', 'enemy', Infinity);
 //-
 let qangle = {x: 0, y: 0};
 let clickTarget;
@@ -79,7 +79,7 @@ function drawAll() {
     render(controlUI);
     // render(tridentCollisionModel); визуализациия коллизии
     update();
-    // crash(tridentCollisionModel,enemy, hit);
+    crash(tridentCollisionModel,enemy, hit);
     evade(player, objectsRendering[0], outOfMap);
     multiplayer();
 //-Специальная функция для зацикливания requestAnimationFrame

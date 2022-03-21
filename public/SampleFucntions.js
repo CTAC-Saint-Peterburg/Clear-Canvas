@@ -81,6 +81,7 @@ function update() {
 };
 function hit() {
     enemy.lifeCycle = 0;
+    goStatus = 1;
     gameOver(1);
 };
 //-needFix
@@ -103,6 +104,7 @@ function outOfMap() {
         ctx.closePath();
         outCountdown--;
         if (outCountdown < 0) {
+            goStatus = 0;
             gameOver(0);
         }
 };
@@ -117,6 +119,7 @@ function multiplayer() {
     room: currentRoom,
     tridentRotate: tridentPlayer.rotate,
     tridentTranslate: tridentTranslateData,
+    gameOverStatus: goStatus,
 };
 socket.on('playerData', (playerToClient)=> {
     enemy.x = playerToClient.x;
@@ -126,6 +129,7 @@ socket.on('playerData', (playerToClient)=> {
     enemy.lifeCycle = playerToClient.lifeCycle;
     tridentEnemy.rotate = playerToClient.tridentRotate;
     enemyTridentTranslate = playerToClient.tridentTranslate;
+    enemy.goStatus = playerToClient.gameOverStatus;
 });
 socket.emit('playerData', playerToServer);
 };
@@ -146,3 +150,10 @@ function setup(playerSetup) {
     }
     socket.emit('listenServerSetup');
 };
+function goResult() {
+    if (enemy.goStatus == 1) {
+        gameOver(0);
+    } else if (enemy.goStatus == 0) {
+        gameOver(1);
+    } else return;
+}

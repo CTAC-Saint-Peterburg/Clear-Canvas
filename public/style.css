@@ -12,7 +12,7 @@ canvas {
     position: relative;
     margin:0 auto;
     top: 5vh;
-    width: 80vw;
+    width: 90vw;
     height: 100%;
     background-color: #2a2b2a;
     border-radius: 50px;
@@ -26,7 +26,10 @@ canvas {
     grid-template-rows: 500px;
     gap: 20px;
     width: 100%;
-    height: 90%;
+    height: 120vh;
+}
+.test {
+    box-shadow: 0px 0px 18px 3px #a5b3df;
 }
 .block_div {
     position: relative;
@@ -69,7 +72,9 @@ canvas {
     background-color: #90e39a;
     border-radius: 26px;
     border: none;
+    transition-duration: 0.2s;
 }
+.accept_button:active {background-color: #6c9371}
 .prev_next_button {
     position: relative;
     margin: 20px 0 0 0;
@@ -81,7 +86,9 @@ canvas {
     background-color: #7293a0;
     border-radius: 26px;
     border: none;
+    transition-duration: 0.2s;
 }
+.prev_next_button:active {background-color: aliceblue}
 .enter_game_div > h1 {
     margin: 0 0 0 0;
     color: #90e39a;

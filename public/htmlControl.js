@@ -4,6 +4,7 @@ function openCanvas() {
     document.querySelector('#canvas').style.display = 'block';
     player.color = skinOptions.selectedColor;
     player.text = playerNickName;
+    document.querySelector('#mainDiv').style.display = 'none';
 }
 function enterNickName() {
     playerNickName = document.querySelector('#nameInput').value;

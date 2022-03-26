@@ -134,7 +134,7 @@ socket.on('playerData', (playerToClient)=> {
 socket.emit('playerData', playerToServer);
 };
 function gameSetup() {
-    console.log("Загрузка и настройка завершина...");
+    console.log("Загрузка и настройка завершена...");
     socket.on('listenServerSetup', setup);
 };
 function setup(playerSetup) {

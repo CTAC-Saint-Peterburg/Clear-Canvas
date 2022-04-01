@@ -5,6 +5,9 @@ function openCanvas() {
     player.color = skinOptions.selectedColor;
     player.text = playerNickName;
     document.querySelector('#mainDiv').style.display = 'none';
+    socket = io.connect('http://localhost:3000');
+    multiplayerStatus = true;
+    gameSetup();
 }
 function enterNickName() {
     playerNickName = document.querySelector('#nameInput').value;

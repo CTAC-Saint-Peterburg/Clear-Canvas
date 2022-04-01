@@ -1,5 +1,5 @@
 var socket;
-socket = io.connect('http://localhost:3000');
+let multiplayerStatus = false; //connect command in htmlControl.js
 //-Создаём Canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -84,9 +84,9 @@ function drawAll() {
     update();
     crash(tridentCollisionModel,enemy, hit);
     evade(player, objectsRendering[0], outOfMap);
-    multiplayer();
+    multiplayer(multiplayerStatus);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
-window.onload = gameSetup(), drawAll();
+window.onload = drawAll();

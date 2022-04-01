@@ -108,7 +108,8 @@ function outOfMap() {
             gameOver(0);
         }
 };
-function multiplayer() {
+function multiplayer(multiplayerStatus) {
+    if (multiplayerStatus == false) { return } else {
     let playerToServer;
     playerToServer = {
     x: Math.floor(player.x * 100) / 100,
@@ -132,6 +133,7 @@ socket.on('playerData', (playerToClient)=> {
     enemy.goStatus = playerToClient.gameOverStatus;
 });
 socket.emit('playerData', playerToServer);
+}
 };
 function gameSetup() {
     console.log("Загрузка и настройка завершена...");

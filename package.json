@@ -19,6 +19,7 @@
   "homepage": "https://github.com/CTAC-Saint-Peterburg/Clear-Canvas#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "firebase": "^9.6.10",
     "socket.io": "^4.4.1"
   }
 }

@@ -43,7 +43,7 @@ canvas.addEventListener('click', (event) => {
     if( keyBoardBtn.q == false) {
         tridentPlayer.rotate = tridentAngle;
     };
-    
+
     angleX = Math.floor(Math.cos(movementAngle) * 100) / 100;
     angleY = Math.floor(Math.sin(movementAngle) * 100) / 100;
     clickTarget = new PlayerClass(clientX +cameraX, clientY +cameraY, 20, 'white', 'click', Infinity);
@@ -57,6 +57,7 @@ window.addEventListener('keyup', (event) => {
         qangle.y = angleY;
         keyBoardBtn.q = true;
         console.log('Q');
+        writeFirebaseData('YURA SEND REQUEST')
     };
 };
 if (keyBoardBtn.w == false) {

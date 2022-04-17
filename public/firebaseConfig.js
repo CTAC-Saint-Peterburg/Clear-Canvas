@@ -21,12 +21,13 @@ const INIT_FIREBASE = () => {
   console.log(userId, 'sending');
     let testData = getDatabase();
     let referance = ref(testData, 'users/' + userId);
+    let time = new Date();
+    let timeForFirebase = time.getDate() + "|" + Number(time.getMonth() + 1) + "|" + time.getFullYear();
     set(referance, {
-      name: "blobbbb",
+      name: playerNickName,
       scores: 1,
-      time: '01.01.1992'
+      time: timeForFirebase
     });
   }
-
 }
 //

@@ -57,7 +57,6 @@ window.addEventListener('keyup', (event) => {
         qangle.y = angleY;
         keyBoardBtn.q = true;
         console.log('Q');
-        writeFirebaseData('YURA SEND REQUEST')
     };
 };
 if (keyBoardBtn.w == false) {

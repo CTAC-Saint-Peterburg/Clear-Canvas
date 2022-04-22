@@ -15,7 +15,7 @@ let movementAngle;
 let angleX = 0;
 let angleY = 0;
 let player = new PlayerClass(innerWidth / 2 +cameraX, innerHeight / 2 +cameraY, 120, skinOptions.selectedColor, playerNickName, Infinity);
-let enemy = new PlayerClass(0, -1700, 120, 'green', 'enemy', Infinity);
+let enemy = new PlayerClass(0, -1700, 120, 'green', 'enemy', Infinity); // -1700 out of map / also used eventListener click
 enemy.goStatus = undefined;
 //-
 let qangle = {x: 0, y: 0};
@@ -28,13 +28,15 @@ let tridentPlayer = new Trident(player.x,player.y,0);
 let tridentEnemy= new EnemyTrident(enemy.x, enemy.y,0);
 let lerpActive = 1;
 let tridentCollisionModel = new PlayerClass(tridentPlayer.x, tridentPlayer.y, 45, 'white', 'collision', Infinity);
-let controlUI = new GUI(innerWidth / 10, innerHeight, 60, 'rgba(231, 236, 239, 0.5)');
+let controlUI = new controlGUI(innerWidth / 10, innerHeight, 60, 'rgba(231, 236, 239, 0.5)');
+let waitForAnotherPlayer = new waitingAnotherPlayerGUI(0, 0, 'Waiting for another Player...', 'white');
 let currentRoom;
 let tridentTranslateData; //- данные о ctx.tranlate()
 let enemyTridentTranslate = {x: enemy.x, y: enemy.y};
 let goStatus = undefined; //-статус сессии начальное undefined изменяется на true и false
 //-
 canvas.addEventListener('click', (event) => {
+    if (enemy.y != -1700) {
     clientY = event.clientY;
     clientX = event.clientX;
     console.log(event);
@@ -48,6 +50,7 @@ canvas.addEventListener('click', (event) => {
     angleY = Math.floor(Math.sin(movementAngle) * 100) / 100;
     clickTarget = new PlayerClass(clientX +cameraX, clientY +cameraY, 20, 'white', 'click', Infinity);
     console.log(tridentAngle);
+}
 });
 //-Функция отслеживания нажатия кнопки Q и W
 window.addEventListener('keyup', (event) => {
@@ -79,6 +82,7 @@ function drawAll() {
     render(tridentEnemy);
     lifeCycle(enemy);
     render(controlUI);
+    render(waitForAnotherPlayer);
     goResult();
     // render(tridentCollisionModel); визуализациия коллизии
     update();

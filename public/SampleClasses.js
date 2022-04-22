@@ -191,7 +191,29 @@ class EnemyTrident {
         ctx.closePath();
     }
 };
-class GUI {
+class waitingAnotherPlayerGUI {
+    constructor(x, y, text, color) {
+        this.x = x;
+        this.y = y;
+        this.text = text;
+        this.color = color;
+    }
+    draw() {
+        if (enemy.y == -1700) {
+        ctx.beginPath();
+        ctx.shadowBlur = 0;
+        ctx.rect(this.x +cameraX, this.y +cameraY, innerWidth, innerHeight);
+        ctx.fillStyle = 'rgba(116, 92, 151, 0.5)';
+        ctx.fill();
+        ctx.fillStyle = this.color;
+        ctx.font = "40px Arial";
+        ctx.textAlign = 'center';
+        ctx.fillText(this.text, innerWidth / 2 +cameraX, innerHeight / 3 +cameraY);
+        ctx.closePath();
+        }
+    }
+}
+class controlGUI {
     constructor(x, y, size, color) {
         this.x = x;
         this.y = y;

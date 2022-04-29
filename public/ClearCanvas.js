@@ -25,7 +25,7 @@ let keyBoardBtn = {q: false, w: false, reloadQ: 0, reloadW: 0};
 let tridentMove = {x: 0, y: 0};
 let trident = {x: 0, y: 0};
 let tridentPlayer = new Trident(player.x,player.y,0);
-let tridentEnemy= new EnemyTrident(enemy.x, enemy.y,0);
+let tridentEnemy= new EnemyTrident(enemy.x, enemy.y, 0, Infinity);
 let lerpActive = 1;
 let tridentCollisionModel = new PlayerClass(tridentPlayer.x, tridentPlayer.y, 45, 'white', 'collision', Infinity);
 let controlUI = new controlGUI(innerWidth / 10, innerHeight, 60, 'rgba(231, 236, 239, 0.5)');
@@ -81,6 +81,7 @@ function drawAll() {
     render(enemy);
     render(tridentEnemy);
     lifeCycle(enemy);
+    lifeCycle(tridentEnemy);
     render(controlUI);
     render(waitForAnotherPlayer);
     goResult();

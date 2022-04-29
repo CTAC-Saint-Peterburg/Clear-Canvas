@@ -81,6 +81,7 @@ function update() {
 };
 function hit() {
     enemy.lifeCycle = 0;
+    tridentEnemy.lifeCycle = 0;
     goStatus = 1;
     gameOver(1);
 };

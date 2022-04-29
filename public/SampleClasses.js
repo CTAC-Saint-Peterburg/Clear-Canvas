@@ -162,10 +162,11 @@ class Trident {
     }
 }
 class EnemyTrident {
-    constructor(x,y,rotate) {
+    constructor(x,y,rotate, lifeCycle) {
         this.x = x;
         this.y = y;
         this.rotate = rotate;
+        this.lifeCycle = lifeCycle;
     }
     draw() {
         ctx.beginPath();
@@ -189,6 +190,7 @@ class EnemyTrident {
         ctx.stroke();
         ctx.restore();
         ctx.closePath();
+        this.lifeCycle -= 1;
     }
 };
 class waitingAnotherPlayerGUI {

@@ -32,6 +32,7 @@ function acceptSkinColor() {
     document.querySelector('#skinView').classList.add('accept_glow');
 };
 function pageReload() {
+    socket.emit('off');
     location.reload();
 };
 function gameOver(result) {
@@ -41,6 +42,7 @@ function gameOver(result) {
         writeFirebaseData(playerNickName);
     } else if (result == 0) {
         document.getElementById('gameOverUItext').innerHTML = 'You lose;(';
+        socket.emit('off');
     } else {console.log('game result error')};
 }
 //---shop options

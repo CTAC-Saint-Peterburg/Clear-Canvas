@@ -28,6 +28,7 @@ function newConnection(socket) {
     socket.emit('listenServerSetup', playerSetup); //-высылаем настройки спавна
     socket.on('listenServerSetup', definePlayerSetup);
     socket.on('playerData', ksok);
+    socket.on('off', offFunc);
     function definePlayerSetup() {
         playerSetup.Pcords++;
         if(playerSetup.Pcords > 1) {playerSetup.Pcords = 0;}
@@ -35,5 +36,9 @@ function newConnection(socket) {
     function ksok(playerToServer) {
         let playerToClient = playerToServer;
     socket.to(playerToServer.room).emit('playerData', playerToClient);
+    }
+    function offFunc() {
+        //-disconnect func
+        socket.disconnect();
     }
 };

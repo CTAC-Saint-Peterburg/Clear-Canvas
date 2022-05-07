@@ -143,6 +143,7 @@ canvas {
 }
 .scores_number {
     background-color: #2a2b2a;
+    width: 35px;
 }
 .your_position_leaderboard {
     position: relative;

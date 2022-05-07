@@ -16,12 +16,18 @@ let db = appFirebase.database();
 let referance = db.ref('users/' + userId);
 let time = new Date();
 let timeForFirebase = time.getDate() + "." + Number(time.getMonth() + 1) + "." + time.getFullYear();
-let data = {
-     name: playerNickName,
-     scores: 4,
-     time: timeForFirebase
-   };
-   referance.push(data);
+// let data = {
+//      name: playerNickName,
+//      scores: 4,
+//      time: timeForFirebase
+//    };
+//    referance.push(data);
+// };
+referance.update({
+         name: playerNickName,
+         scores: 4,
+         time: timeForFirebase
+});
 };
 //- read from firebase func()
 let dataFirebase = new Array();
@@ -43,10 +49,7 @@ function alldataFirebaseParse() {
   function dataFirebaseParse(index) {
     let readData = dataFirebase;
     let userId = Object.keys(readData);
-    let randomFirebaseId = readData[userId[index]];
-    let objectKeys = Object.keys(randomFirebaseId);
-    parsedDataFirebase[index] = randomFirebaseId[objectKeys[0]];
-    // console.log(parsedDataFirebase[index]);
+    parsedDataFirebase[index] = readData[userId[index]];
     }
   for( let i =0; i < dataFirebaseLength.length; i++) {
     dataFirebaseParse(i);

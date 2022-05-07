@@ -24,10 +24,9 @@ let data = {
    referance.push(data);
 };
 //- read from firebase func()
-let dataFirebase;
-let dataFirebaseLength;
+let dataFirebase = new Array();
 let parsedDataFirebase = new Array();
-function readFirebaseData() {
+async function readFirebaseData() {
 let db = appFirebase.database();
 let referance = db.ref('users/');
 referance.on('value', getData, errorFirebase);
@@ -38,8 +37,9 @@ function errorFirebase(err) {
 console.log('что-то пошло нитак блин!');
 }
 }
+//-after read parse func()
 function alldataFirebaseParse() {
-  dataFirebaseLength = Object.keys(dataFirebase);
+  let dataFirebaseLength = Object.keys(dataFirebase);
   function dataFirebaseParse(index) {
     let readData = dataFirebase;
     let userId = Object.keys(readData);
@@ -51,5 +51,11 @@ function alldataFirebaseParse() {
   for( let i =0; i < dataFirebaseLength.length; i++) {
     dataFirebaseParse(i);
   }
-}
-readFirebaseData();
+};
+readFirebaseData().then(delay);
+//-need to fix delay func()
+function delay() {
+  setTimeout(()=> alldataFirebaseParse(), 400);
+  setTimeout(()=> showFirebaseDataInHtml(), 500);
+
+};

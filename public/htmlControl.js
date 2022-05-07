@@ -54,25 +54,19 @@ divShop.className = 'unlock_items';
 document.getElementById('shopOptions').appendChild(divShop);
 }
 };
-//-myDataBase.json
-const dataUrl = 'myDataBase.json';
-async function getFromDataBase() {
-const response = await fetch(dataUrl);
-const rawdata = await response.json();
-let data = JSON.parse(JSON.stringify(rawdata));
-console.log(data);
-for (let i = 0; i < data.length; i++) {
+//---Leaderboard
+ function showFirebaseDataInHtml() {
+for (let i = 0; i < parsedDataFirebase.length; i++) {
 let element = document.getElementById('firstTable');
 let createTr = document.createElement('tr');
 let createTdname = document.createElement('td');
-createTdname.innerText = data[i].name;
+createTdname.innerText = parsedDataFirebase[i].name;
 let createTdscores = document.createElement('td');
 createTdscores.className = 'scores_number';
-createTdscores.innerText = data[i].scores;
+createTdscores.innerText = parsedDataFirebase[i].scores;
 element.appendChild(createTr);
 element.appendChild(createTdname);
 element.appendChild(createTdscores);
 }
-}
-getFromDataBase();
+};
 //-----

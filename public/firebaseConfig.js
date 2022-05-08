@@ -16,16 +16,27 @@ let db = appFirebase.database();
 let referance = db.ref('users/' + userId);
 let time = new Date();
 let timeForFirebase = time.getDate() + "." + Number(time.getMonth() + 1) + "." + time.getFullYear();
+
+function scoresCheck() {
+let score = 1;
+for (let i = 0; i < parsedDataFirebase.length; i++) {
+  if(parsedDataFirebase[i].name == playerNickName) {
+    return parsedDataFirebase[i].scores + 1;
+  }
+}
+return 1;
+}
+
 // let data = {
 //      name: playerNickName,
-//      scores: 4,
+//      scores: scoresCheck(),
 //      time: timeForFirebase
 //    };
 //    referance.push(data);
 // };
 referance.update({
          name: playerNickName,
-         scores: 4,
+         scores: scoresCheck(),
          time: timeForFirebase
 });
 };

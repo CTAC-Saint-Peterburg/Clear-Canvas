@@ -56,6 +56,7 @@ document.getElementById('shopOptions').appendChild(divShop);
 };
 //---Leaderboard
  function showFirebaseDataInHtml() {
+     parsedDataFirebase.sort((a,b)=> a.scores - b.scores).reverse();
 for (let i = 0; i < parsedDataFirebase.length; i++) {
 let element = document.getElementById('firstTable');
 let createTr = document.createElement('tr');

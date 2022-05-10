@@ -4,6 +4,6 @@
 3. add point system and unclokable skins - !!!
 4. add auto disconnect at the end of the game - done
 5. fix trident lifeCycle - done
-6. show firebase data on the page (1/2) - done (sync problem) - !!!
+6. show firebase data on the page (2/2) - done. (sync problem) - !!!
 7. firebase set update or push - done
-8. need to fix dublicate values from learderboard - !!!
+8. need to fix dublicate values from learderboard - done

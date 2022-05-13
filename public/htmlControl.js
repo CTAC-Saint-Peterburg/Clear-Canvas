@@ -57,17 +57,22 @@ document.getElementById('shopOptions').appendChild(divShop);
 //---Leaderboard
  function showFirebaseDataInHtml() {
      parsedDataFirebase.sort((a,b)=> a.scores - b.scores).reverse();
+     let element = document.getElementById('firebase-data');
+     let positionCounter = 1;
 for (let i = 0; i < parsedDataFirebase.length; i++) {
-let element = document.getElementById('firstTable');
 let createTr = document.createElement('tr');
 let createTdname = document.createElement('td');
 createTdname.innerText = parsedDataFirebase[i].name;
 let createTdscores = document.createElement('td');
 createTdscores.className = 'scores_number';
+let createTdPosition = document.createElement('td');
+createTdPosition.innerText = positionCounter;
+positionCounter++;
 createTdscores.innerText = parsedDataFirebase[i].scores;
 element.appendChild(createTr);
 element.appendChild(createTdname);
 element.appendChild(createTdscores);
+element.appendChild(createTdPosition);
 }
 };
 //-----

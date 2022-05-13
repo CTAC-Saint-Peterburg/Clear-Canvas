@@ -1,9 +1,8 @@
+#Upcoming features...
+1. New style css features
+2. 
 #Todolist
-1. need to fix class waitingAnotherPlayerGUI (second player problem) - !!!
-2. need remake firebase load and write data functions - done
-3. add point system and unclokable skins - !!!
-4. add auto disconnect at the end of the game - done
-5. fix trident lifeCycle - done
-6. show firebase data on the page (2/2) - done. (sync problem) - !!!
-7. firebase set update or push - done
-8. need to fix dublicate values from learderboard - done
+1. Need to fix class waitingAnotherPlayerGUI (second player problem)
+2. Auto disconnect if game not found
+3. Fix engine problems
+4. Need to fix refresh data dublication

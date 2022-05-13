@@ -9,7 +9,7 @@ const firebaseConfig = {
   appId: "1:1004336424534:web:574e71b095acd6082dfdf7"
 };
 const appFirebase = firebase.initializeApp(firebaseConfig);
-console.log(appFirebase);
+// console.log(appFirebase);
 //- write to firebase func()
 function writeFirebaseData(userId) {
 let db = appFirebase.database();

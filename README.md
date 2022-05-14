@@ -1,4 +1,5 @@
-# Clear-Canvas Updated <02.04.2022>
+# Clear-Canvas Updated <14.05.2022>
+## check Online-demo branch
 ClearCanvas, my little JavaScript experiment
 --------------------------------------------
 ### The journey has begun V.0.0.0
@@ -68,3 +69,15 @@ found a Hypot() bug
 2. Add function to show userdata from json file
 3. Add new readme file for functions explain
 ------------------------------------------
+### Online-demo branch v.0.1.3
+1. Add firebase database
+2. Fix some style bugs
+3. Add data write to firebase func()
+------------------------------------------
+### Online-demo branch v.0.1.4
+1. Add data get from firebase func()
+2. Add data parse func()
+------------------------------------------
+### Online-demo branch v.0.1.5
+1. Add player wait func()
+2. Add auto disconnect func() after gameover

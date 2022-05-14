@@ -143,6 +143,7 @@ canvas {
 }
 .scores_number {
     background-color: #2a2b2a;
+    font-weight: 600;
     width: 35px;
 }
 .your_position_leaderboard {
@@ -172,4 +173,12 @@ canvas {
     border-radius: 25px;
     text-align: center;
     font-size: 36px;
+}
+.firebase-PlayerNickname {
+font-weight: 600;
+color: #f4d35e;
+}
+.firebase-Position-Number {
+    font-weight: 600;
+    color: tomato;
 }

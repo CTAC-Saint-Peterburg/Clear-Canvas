@@ -62,10 +62,12 @@ document.getElementById('shopOptions').appendChild(divShop);
 for (let i = 0; i < parsedDataFirebase.length; i++) {
 let createTr = document.createElement('tr');
 let createTdname = document.createElement('td');
+createTdname.classList.add('firebase-PlayerNickname');
 createTdname.innerText = parsedDataFirebase[i].name;
 let createTdscores = document.createElement('td');
 createTdscores.className = 'scores_number';
 let createTdPosition = document.createElement('td');
+createTdPosition.classList.add('firebase-Position-Number');
 createTdPosition.innerText = positionCounter;
 positionCounter++;
 createTdscores.innerText = parsedDataFirebase[i].scores;

@@ -1,4 +1,5 @@
 //-Создаём Canvas
+//-Creating a Canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvasSize(1000, 1000);
@@ -6,6 +7,7 @@ const objectsRendering = new Array();
 let sampleCycle = objectsRendering.push(new Cycle(500, 500, 100, 'tomato', 'Hello, I am sample', Infinity));
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
 //-Камера центрирована и двигается в сторону клика
+//-The camera is centered and moves towards the click
 let cameraX = 0;
 let cameraY = 0;
 let clientX;
@@ -27,6 +29,7 @@ function camera() {
     ctx.translate(-cameraX, -cameraY);
 }
 //-Функция отрисовки всех элементов
+//Function of rendering all elements
 function drawAll() {
     clearCanvas();
     background('black');
@@ -37,15 +40,18 @@ function drawAll() {
     requestAnimationFrame(drawAll);
 };
 //-Функция управления размерами Canvas
+//-Set canvas size function
 function canvasSize(width, height) {
     canvas.width = width;
     canvas.height = height;
 };
 //-Функция очистки Canvas
+//-Clear canvas function
 function clearCanvas() {
     ctx.clearRect(0,0, canvas.width, canvas.height);
 };
-//-Фукция управления цвета фона Canvas
+//-Фукция управления цвета фона Canvas (используй формат строки для цвета)
+//-Set background color function (use string format for "color")
 function background(color) {
     ctx.beginPath();
     ctx.resetTransform();
@@ -54,16 +60,18 @@ function background(color) {
     ctx.closePath();
 };
 //-Функция отривоки массива или обьекта с встроенной функцией draw()
+//-The function of drawing an array or object with a built-in function draw()
 function render(data) {
-if (Array.isArray(data)) {
-for(let i = 0; i < data.length; i++) {
-    data[i].draw();
-}
-} else {
-    data.draw();
-}
+    if (Array.isArray(data)) {
+    for(let i = 0; i < data.length; i++) {
+        data[i].draw();
+    }
+    } else {
+        data.draw();
+    }
 };
 //-Функция фильтрации массива по параметру жизненного цикла объекта
+//-Filtering function by object lifecycle parameter
 function lifeCycle(data) {
     if (Array.isArray(data)) {
     for(let i = data.length - 1; i >= 0; i--) {
@@ -75,5 +83,20 @@ function lifeCycle(data) {
     data.draw = () => {};
 }
 };
+//-Функция обработки столкновения двух кругов и вызова вложенной функции при регистрации
+//-The function of handling the collision of two circles and calling a nested function during registration
+function crash(ObjectOne, ObjectTwo, eventfunction) {
+    let dist = Math.hypot(ObjectOne.x - ObjectTwo.x, ObjectOne.y - ObjectTwo.y);
+    // console.log(dist);
+    if (dist < ObjectOne.size + ObjectTwo.size) { eventfunction() };
+};
+//-Функция обратная обратная crash()
+//-Reverse of crash() func
+function evade(ObjectOne, ObjectTwo, eventfunction) {
+    let dist = Math.hypot(ObjectOne.x - ObjectTwo.x, ObjectOne.y - ObjectTwo.y);
+    // console.log(dist);
+    if (dist > ObjectOne.size + ObjectTwo.size) { eventfunction() };
+};
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
+//-We run the function of rendering all elements on Canvas after loading the page
 window.onload = drawAll();

@@ -81,3 +81,7 @@ found a Hypot() bug
 ### Online-demo branch v.0.1.5
 1. Add player wait func()
 2. Add auto disconnect func() after gameover
+--------------------------------------------
+### Update v.0.1.6
+1. fix some documentation
+--------------------------------------------

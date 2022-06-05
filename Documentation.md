@@ -1,4 +1,4 @@
-# Clear-Canvas Documentation/Документация <14.05.2022>
+# Clear-Canvas Documentation/Документация <05.06.2022>
 !Current development branch (Online-demo)!
 --------------------------------------------
 ### ENG

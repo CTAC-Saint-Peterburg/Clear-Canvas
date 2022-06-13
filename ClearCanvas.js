@@ -2,10 +2,11 @@
 //-Creating a Canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-canvasSize(1000, 1000);
+canvasSize(innerWidth, innerHeight);
 const objectsRendering = new Array();
 let sampleCycle = objectsRendering.push(new Cycle(500, 500, 100, 'tomato', 'Hello, I am sample', Infinity));
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
+let boxSampleA = new Box(900, 0, 300, 0, 'pink', 'Hover the mouse over the edges', Infinity);
 //-Камера центрирована и двигается в сторону клика
 //-The camera is centered and moves towards the click
 let cameraX = 0;
@@ -15,18 +16,33 @@ let clientY;
 let movementAngle;
 let angleX = 0;
 let angleY = 0;
-canvas.addEventListener('click', (event) => {
+let testCamY = false;
+let testCamX = false;
+canvas.addEventListener('mousemove', (event) => {
+    console.log(event.clientY);
+    if (event.clientY <= 80 || event.clientY > (canvas.height- 200)) {
+    testCamY = true;
+    } else {
+        testCamY = false;
+    } 
+    if (event.clientX <= 50 || event.clientX > (canvas.width- 100)) {
+        testCamX = true;
+    } else testCamX = false;
+})
+canvas.addEventListener('mousemove', (event) => {
+    if(testCamY || testCamX) {
     clientY = event.clientY;
     clientX = event.clientX;
     movementAngle = Math.atan2(clientY - canvas.height / 2, clientX - canvas.height / 2);
     angleX = Math.cos(movementAngle);
     angleY = Math.sin(movementAngle);
-    console.log(angleX);
-});
+    // console.log(angleX);
+}});
 function camera() {
+    if (testCamY || testCamX) {
     cameraX += angleX;
     cameraY += angleY;
-    ctx.translate(-cameraX, -cameraY);
+    }
 }
 //-Функция отрисовки всех элементов
 //Function of rendering all elements
@@ -34,7 +50,9 @@ function drawAll() {
     clearCanvas();
     background('black');
     camera();
+    ctx.translate(-cameraX, -cameraY);
     render(boxSample);
+    render(boxSampleA);
     lifeCycle(boxSample);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);

@@ -7,6 +7,7 @@ const objectsRendering = new Array();
 let sampleCycle = objectsRendering.push(new Cycle(500, 500, 100, 'tomato', 'Hello, I am sample', Infinity));
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
 let boxSampleA = new Box(900, 0, 300, 0, 'pink', 'Hover the mouse over the edges', Infinity);
+let strategicMap = new GlobalMap(0, 0, 0);
 //-Камера центрирована и двигается в сторону клика
 //-The camera is centered and moves towards the click
 let cameraX = 0;
@@ -16,30 +17,30 @@ let clientY;
 let movementAngle;
 let angleX = 0;
 let angleY = 0;
-let testCamY = false;
-let testCamX = false;
+let strategicCamY = false;
+let strategicCamX = false;
 canvas.addEventListener('mousemove', (event) => {
-    console.log(event.clientY);
+    // console.log(event.clientY);
     if (event.clientY <= 80 || event.clientY > (canvas.height- 200)) {
-    testCamY = true;
+        strategicCamY = true;
     } else {
-        testCamY = false;
+        strategicCamY = false;
     } 
     if (event.clientX <= 50 || event.clientX > (canvas.width- 100)) {
-        testCamX = true;
-    } else testCamX = false;
+        strategicCamX = true;
+    } else strategicCamX = false;
 })
 canvas.addEventListener('mousemove', (event) => {
-    if(testCamY || testCamX) {
+    if(strategicCamY || strategicCamX) {
     clientY = event.clientY;
     clientX = event.clientX;
     movementAngle = Math.atan2(clientY - canvas.height / 2, clientX - canvas.height / 2);
-    angleX = Math.cos(movementAngle);
-    angleY = Math.sin(movementAngle);
-    // console.log(angleX);
+    angleX = Math.floor(Math.cos(movementAngle) * 100) / 100;
+    angleY = Math.floor(Math.sin(movementAngle) * 100) / 100;
+    console.log(angleX);
 }});
 function camera() {
-    if (testCamY || testCamX) {
+    if (strategicCamY || strategicCamX) {
     cameraX += angleX;
     cameraY += angleY;
     }
@@ -53,6 +54,7 @@ function drawAll() {
     ctx.translate(-cameraX, -cameraY);
     render(boxSample);
     render(boxSampleA);
+    render(strategicMap);
     lifeCycle(boxSample);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);

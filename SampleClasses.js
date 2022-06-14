@@ -77,3 +77,18 @@ class Box {
         this.lifeCycle -= 1;
     }
 };
+class GlobalMap {
+    constructor(x,y, size) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+    }
+    draw() {
+        let img = new Image();
+        img.src = './assets/UK-Ireland.jpg';
+            ctx.beginPath();
+            ctx.drawImage(img, this.x, this.y);
+            ctx.closePath();
+        
+    }
+} 

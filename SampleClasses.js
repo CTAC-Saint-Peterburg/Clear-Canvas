@@ -91,4 +91,24 @@ class GlobalMap {
             ctx.closePath();
         
     }
-} 
+}
+class Town {
+    constructor(name, x, y, isCapital, townStage) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        this.isCapital = isCapital;
+        this.townStage = townStage;
+    }
+    draw() {
+        let img = new Image();
+        img.src = townStageFunc(this.townStage);
+        ctx.beginPath();
+        ctx.drawImage(img, this.x, this.y);
+        ctx.fillStyle = 'tomato';
+        ctx.font = "40px Arial";
+        ctx.textAlign = 'center';
+        ctx.fillText(this.name, this.x + 250 / 2, this.y + 580 /2);
+        ctx.closePath();
+    }
+}

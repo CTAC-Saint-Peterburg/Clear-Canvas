@@ -112,3 +112,26 @@ class Town {
         ctx.closePath();
     }
 }
+class Army {
+    constructor(x, y, general, country, size, needScale, region, grab) {
+        this.x = x;
+        this.y = y;
+        this.general = general;
+        this.country = country;
+        this.size = size;
+        this.needScale = needScale;
+        this.region = region;
+        this.grab = grab;
+    }
+    draw() {
+        let img = new Image();
+        img.src = './assets/army1.png';
+        ctx.beginPath();
+        ctx.drawImage(img, this.x, this.y);
+        ctx.fillStyle = 'black';
+        ctx.font = "40px Arial";
+        ctx.textAlign = 'center';
+        ctx.fillText('Click on me Sir!', this.x + 100 / 2, this.y + 680 /2);
+        ctx.closePath();
+    }
+}

@@ -10,6 +10,7 @@ let strategicMap = new GlobalMap(0, 0, 0);
 let townLondon = new Town('London', 1100, 1300, false, 1);
 let townEdinburg = new Town('Edinburg', 800, 200, false, 2);
 let townDublin = new Town('Dublin', 500, 800, false, 3);
+let testArmy = new Army(300, 700, undefined, undefined, undefined, undefined, undefined, false);
 //-Камера центрирована и двигается в сторону клика
 //-The camera is centered and moves towards the click
 let cameraX = 0;
@@ -21,6 +22,10 @@ let angleX = 0;
 let angleY = 0;
 let strategicCamY = false;
 let strategicCamX = false;
+canvas.addEventListener('click', (event) => {
+    console.log('hurray!');
+    testArmy.grab = !testArmy.grab;
+})
 canvas.addEventListener('mousemove', (event) => {
     // console.log(event.clientY);
     if (event.clientY <= 80 || event.clientY > (canvas.height- 200)) {
@@ -31,6 +36,10 @@ canvas.addEventListener('mousemove', (event) => {
     if (event.clientX <= 50 || event.clientX > (canvas.width- 100)) {
         strategicCamX = true;
     } else strategicCamX = false;
+    if (testArmy.grab) {
+    testArmy.x = event.clientX + cameraX;
+    testArmy.y = event.clientY + cameraY;
+    }
 })
 canvas.addEventListener('mousemove', (event) => {
     if(strategicCamY || strategicCamX) {
@@ -53,6 +62,7 @@ function drawAll() {
     render(boxSampleA);
     render(strategicMap);
     render(towns);
+    render(testArmy);
     lifeCycle(boxSample);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);

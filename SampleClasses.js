@@ -105,7 +105,7 @@ class Town {
         img.src = townStageFunc(this.townStage);
         ctx.beginPath();
         ctx.drawImage(img, this.x, this.y);
-        ctx.fillStyle = 'tomato';
+        ctx.fillStyle = 'blue';
         ctx.font = "40px Arial";
         ctx.textAlign = 'center';
         ctx.fillText(this.name, this.x + 250 / 2, this.y + 580 /2);

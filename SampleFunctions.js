@@ -67,8 +67,12 @@ function townStageFunc(data) {
         case 1:
             return './assets/town1.png';
         case 2: 
-            return 'world';
+            return './assets/town2.png';
         case 3:
-            return '!';
+            return './assets/town3.png';
     };
+};
+function setTowns() {
+    towns = [];
+    towns.push(townLondon,townEdinburg,townDublin);
 };

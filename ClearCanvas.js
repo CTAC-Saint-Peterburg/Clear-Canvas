@@ -3,11 +3,13 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvasSize(innerWidth, innerHeight);
-const towns = new Array();
+let towns = new Array();
 let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
 let boxSampleA = new Box(900, 0, 300, 0, 'pink', 'Hover the mouse over the edges', Infinity);
 let strategicMap = new GlobalMap(0, 0, 0);
-let test = new Town('London', 0, 0, false, 1);
+let townLondon = new Town('London', 1100, 1300, false, 1);
+let townEdinburg = new Town('Edinburg', 800, 200, false, 2);
+let townDublin = new Town('Dublin', 500, 800, false, 3);
 //-Камера центрирована и двигается в сторону клика
 //-The camera is centered and moves towards the click
 let cameraX = 0;
@@ -46,10 +48,11 @@ function drawAll() {
     background('black');
     camera();
     ctx.translate(-cameraX, -cameraY);
+    setTowns();
     render(boxSample);
     render(boxSampleA);
     render(strategicMap);
-    render(test);
+    render(towns);
     lifeCycle(boxSample);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);

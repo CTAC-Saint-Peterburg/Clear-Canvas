@@ -22,11 +22,17 @@ let angleX = 0;
 let angleY = 0;
 let strategicCamY = false;
 let strategicCamX = false;
+let mouseM;
 canvas.addEventListener('click', (event) => {
+    if((event.clientX + cameraX) >= (testArmy.x) && (event.clientX + cameraX) < (testArmy.x + 120)) {
+        if((event.clientY + cameraY) >= (testArmy.y) && (event.clientY + cameraY) < (testArmy.y + 300)) {
     console.log('hurray!');
     testArmy.grab = !testArmy.grab;
+        }    
+}
 })
 canvas.addEventListener('mousemove', (event) => {
+    mouseM = event;
     // console.log(event.clientY);
     if (event.clientY <= 80 || event.clientY > (canvas.height- 200)) {
         strategicCamY = true;
@@ -36,10 +42,6 @@ canvas.addEventListener('mousemove', (event) => {
     if (event.clientX <= 50 || event.clientX > (canvas.width- 100)) {
         strategicCamX = true;
     } else strategicCamX = false;
-    if (testArmy.grab) {
-    testArmy.x = event.clientX + cameraX;
-    testArmy.y = event.clientY + cameraY;
-    }
 })
 canvas.addEventListener('mousemove', (event) => {
     if(strategicCamY || strategicCamX) {

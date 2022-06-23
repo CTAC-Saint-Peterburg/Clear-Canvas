@@ -73,13 +73,20 @@ function townStageFunc(data) {
     };
 };
 function grabStatus(event) {
-    armies.forEach(army => {
+    let counter = 0; //-Считает количество одновременных grab.status true
+    armies.forEach(army=> {
         if((event.clientX + cameraX) >= (army.x) && (event.clientX + cameraX) < (army.x + 120)) {
             if((event.clientY + cameraY) >= (army.y) && (event.clientY + cameraY) < (army.y + 300)) {
         console.log('hurray!');
+        counter++;
+        if(counter < 2) {
         army.grab = !army.grab;
         console.log(army.grab);
-            }    
+            } else {
+         army.grab = false;
+         counter--;
+        };
+        }    
     }
     });
 }

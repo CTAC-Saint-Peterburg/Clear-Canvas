@@ -135,7 +135,7 @@ class Army {
         ctx.fillStyle = 'black';
         ctx.font = "40px Arial";
         ctx.textAlign = 'center';
-        ctx.fillText('Click on me Sir!', this.x + 100 / 2, this.y + 680 /2);
+        ctx.fillText(this.general, this.x + 100 / 2, this.y + 680 /2);
         ctx.closePath();
     }
 }

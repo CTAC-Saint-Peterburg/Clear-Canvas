@@ -9,8 +9,8 @@ let strategicMap = new GlobalMap(0, 0, 0);
 let townLondon = new Town('London', 1100, 1300, false, 1);
 let townEdinburg = new Town('Edinburg', 800, 200, false, 2);
 let townDublin = new Town('Dublin', 500, 800, false, 3);
-let testArmy = new Army(300, 700, undefined, undefined, undefined, undefined, undefined, false);
-let testArmyTwo = new Army(1000, 800, undefined, undefined, undefined, undefined, undefined, false);
+let testArmy = new Army(300, 700, 'army 1', undefined, undefined, undefined, undefined, false);
+let testArmyTwo = new Army(1000, 800, 'army 2', undefined, undefined, undefined, undefined, false);
 //-Камера центрирована и двигается в сторону клика
 //-The camera is centered and moves towards the click
 let cameraX = 0;

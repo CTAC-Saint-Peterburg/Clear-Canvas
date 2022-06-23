@@ -72,7 +72,22 @@ function townStageFunc(data) {
             return './assets/town3.png';
     };
 };
+function grabStatus(event) {
+    armies.forEach(army => {
+        if((event.clientX + cameraX) >= (army.x) && (event.clientX + cameraX) < (army.x + 120)) {
+            if((event.clientY + cameraY) >= (army.y) && (event.clientY + cameraY) < (army.y + 300)) {
+        console.log('hurray!');
+        army.grab = !army.grab;
+        console.log(army.grab);
+            }    
+    }
+    });
+}
 function setTowns() {
     towns = [];
     towns.push(townLondon,townEdinburg,townDublin);
+};
+function setArmies() {
+    armies = [];
+    armies.push(testArmy, testArmyTwo);
 };

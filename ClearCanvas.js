@@ -4,13 +4,13 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvasSize(innerWidth, innerHeight);
 let towns = new Array();
-let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
-let boxSampleA = new Box(900, 0, 300, 0, 'pink', 'Hover the mouse over the edges', Infinity);
+let armies = new Array();
 let strategicMap = new GlobalMap(0, 0, 0);
 let townLondon = new Town('London', 1100, 1300, false, 1);
 let townEdinburg = new Town('Edinburg', 800, 200, false, 2);
 let townDublin = new Town('Dublin', 500, 800, false, 3);
 let testArmy = new Army(300, 700, undefined, undefined, undefined, undefined, undefined, false);
+let testArmyTwo = new Army(1000, 800, undefined, undefined, undefined, undefined, undefined, false);
 //-Камера центрирована и двигается в сторону клика
 //-The camera is centered and moves towards the click
 let cameraX = 0;
@@ -24,13 +24,8 @@ let strategicCamY = false;
 let strategicCamX = false;
 let mouseM;
 canvas.addEventListener('click', (event) => {
-    if((event.clientX + cameraX) >= (testArmy.x) && (event.clientX + cameraX) < (testArmy.x + 120)) {
-        if((event.clientY + cameraY) >= (testArmy.y) && (event.clientY + cameraY) < (testArmy.y + 300)) {
-    console.log('hurray!');
-    testArmy.grab = !testArmy.grab;
-        }    
-}
-})
+     grabStatus(event);
+});
 canvas.addEventListener('mousemove', (event) => {
     mouseM = event;
     // console.log(event.clientY);
@@ -60,12 +55,10 @@ function drawAll() {
     camera();
     ctx.translate(-cameraX, -cameraY);
     setTowns();
-    render(boxSample);
-    render(boxSampleA);
+    setArmies();
     render(strategicMap);
     render(towns);
-    render(testArmy);
-    lifeCycle(boxSample);
+    render(armies);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };

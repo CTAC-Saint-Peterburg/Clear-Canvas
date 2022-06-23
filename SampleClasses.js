@@ -126,9 +126,9 @@ class Army {
     draw() {
         let img = new Image();
         img.src = './assets/army1.png';
-        if (testArmy.grab) {
-            testArmy.x = mouseM.clientX + cameraX;
-            testArmy.y = mouseM.clientY + cameraY;
+        if (this.grab) {
+            this.x = mouseM.clientX + cameraX;
+            this.y = mouseM.clientY + cameraY;
             }
         ctx.beginPath();
         ctx.drawImage(img, this.x, this.y);

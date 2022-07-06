@@ -3,6 +3,10 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvasSize(innerWidth, innerHeight);
+let cameraX = 0;
+let cameraY = 0;
+let angleX = 0;
+let angleY = 0;
 let towns = new Array();
 let armies = new Array();
 let strategicMap = new GlobalMap(0, 0, 0);
@@ -11,19 +15,18 @@ let townEdinburg = new Town('Edinburg', 800, 200, false, 2);
 let townDublin = new Town('Dublin', 500, 800, false, 3);
 let testArmy = new Army(300, 700, 'army 1', undefined, undefined, undefined, undefined, false);
 let testArmyTwo = new Army(1000, 800, 'army 2', undefined, undefined, undefined, undefined, false);
+let testUi = new UI(canvas.width /2 - 400, 200, 800, 600, false, 1, {title: 'Menu'}, {color: 'red', textColor: 'white',});
 //-Камера центрирована и двигается в сторону клика
 //-The camera is centered and moves towards the click
-let cameraX = 0;
-let cameraY = 0;
 let clientX;
 let clientY;
 let movementAngle;
-let angleX = 0;
-let angleY = 0;
+
 let strategicCamY = false;
 let strategicCamX = false;
 let mouseM;
 canvas.addEventListener('click', (event) => {
+    focusUI(event);
      grabStatus(event);
 });
 canvas.addEventListener('mousemove', (event) => {
@@ -59,6 +62,7 @@ function drawAll() {
     render(strategicMap);
     render(towns);
     render(armies);
+    render(testUi);
 //-Специальная функция для зацикливания requestAnimationFrame
     requestAnimationFrame(drawAll);
 };

@@ -139,3 +139,28 @@ class Army {
         ctx.closePath();
     }
 }
+class UI {
+    constructor(x, y, sizeX, sizeY, focus, Zindex, textData, style) {
+        this.x = x;
+        this.y = y;
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        this.focus = focus;
+        this.Zindex = Zindex;
+        this.textData = textData;
+        this.style = style;
+
+    }
+    draw() {
+        if (this.Zindex == undefined || this.Zindex == 0) return;
+        ctx.beginPath();
+        ctx.rect(this.x + cameraX, this.y + cameraY, this.sizeX, this.sizeY);
+        ctx.fillStyle = this.style.color;
+        ctx.fill();
+        ctx.fillStyle = this.style.textColor;
+        ctx.font = "40px Arial";
+        ctx.textAlign = 'center';
+        ctx.fillText(this.textData.title, this.x + (this.sizeX / 2) + cameraX, this.y + 50 + cameraY);
+        ctx.closePath();
+    }
+}

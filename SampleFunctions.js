@@ -90,6 +90,15 @@ function grabStatus(event) {
     }
     });
 }
+function focusUI(event) {
+    towns.forEach(town=> {
+        if((event.clientX + cameraX) >= (town.x) && (event.clientX + cameraX) < (town.x + 100)) {
+            if((event.clientY + cameraY) >= (town.y) && (event.clientY + cameraY) < (town.y + 100)) {
+                testUi.Zindex = !testUi.Zindex;
+            }
+        }
+    })
+};
 function setTowns() {
     towns = [];
     towns.push(townLondon,townEdinburg,townDublin);

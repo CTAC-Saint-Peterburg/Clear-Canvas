@@ -8,7 +8,7 @@ let cameraY = 0;
 let time = new TextTime(220, 100, undefined, "#fefefe", "1:49");
 let totalScore = new TextMessage(250, 150, "30px", "#c8c5d2", "Total scores");
 let scores = new TextMessage(250, 220, "72px", "#ebe660", 0);
-let combo = new TextMessage(80, 330, "36px", "#d5207a", "Combo");
+let comboText = new TextMessage(80, 330, "36px", "#d5207a", "Combo");
 let difficulty = "900";
 let screenClick = {
   x: undefined,
@@ -54,6 +54,7 @@ let questionAnswer = new TextMessage(
   "#da2b3f",
   question.answer()
 );
+let combo = new TextCombo(0, 430, 40, "#da2b3f", 0);
 let yesAnswer = new AnswerBubble(120, 830, 80, "#ebe660", "Y");
 let noAnswer = new AnswerBubble(380, 830, 80, "#da2b3f", "N");
 //-Функция отрисовки всех элементов
@@ -65,6 +66,7 @@ function drawAll() {
   render(time);
   render(totalScore);
   render(scores);
+  render(comboText);
   render(combo);
   render(questionText);
   render(equality);

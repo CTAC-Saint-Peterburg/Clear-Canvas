@@ -132,3 +132,32 @@ class AnswerBubble {
     ctx.closePath();
   }
 }
+class TextCombo {
+  constructor(x, y, size, color, text) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.color = color;
+    this.text = text;
+    this.animFrames = 200;
+    this.framesCounter = -1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.save();
+    ctx.translate(-50, 0);
+    ctx.rotate((-20 * Math.PI) / 180);
+    ctx.fillStyle = this.color;
+    ctx.font = `bold ${this.size + this.animFrames / 10}px Arial`;
+    ctx.textAlign = "center";
+    ctx.fillText("X" + this.text, this.x, this.y);
+    ctx.restore();
+    ctx.closePath();
+    if (this.animFrames <= 0) {
+      this.framesCounter = 1;
+    } else if (this.animFrames >= 200) {
+      this.framesCounter = -1;
+    }
+    this.animFrames += this.framesCounter * 2;
+  }
+}

@@ -21,16 +21,18 @@ canvas.addEventListener("click", (e) => {
   crash(yesAnswer, screenClick, () => {
     console.log("yes!");
     if (questionAnswer.text == questionAnswer.text - intrigue) {
-      scores.text += 100;
+      scores.text += 100 + 50 * combo.count;
+      combo.count += 1;
       refreshApp(difficulty);
-    } else refreshApp(difficulty);
+    } else refreshApp(difficulty), (combo.count = 0);
   });
   crash(noAnswer, screenClick, () => {
     console.log("no");
     if (questionAnswer.text != questionAnswer.text - intrigue) {
-      scores.text += 100;
+      scores.text += 100 + 50 * combo.count;
+      combo.count += 1;
       refreshApp(difficulty);
-    } else refreshApp(difficulty);
+    } else refreshApp(difficulty), (combo.count = 0);
   });
 });
 let question = {

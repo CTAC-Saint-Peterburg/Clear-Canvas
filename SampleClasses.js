@@ -133,12 +133,12 @@ class AnswerBubble {
   }
 }
 class TextCombo {
-  constructor(x, y, size, color, text) {
+  constructor(x, y, size, color, count) {
     this.x = x;
     this.y = y;
     this.size = size;
     this.color = color;
-    this.text = text;
+    this.count = count;
     this.animFrames = 200;
     this.framesCounter = -1;
   }
@@ -150,7 +150,7 @@ class TextCombo {
     ctx.fillStyle = this.color;
     ctx.font = `bold ${this.size + this.animFrames / 10}px Arial`;
     ctx.textAlign = "center";
-    ctx.fillText("X" + this.text, this.x, this.y);
+    ctx.fillText("X" + this.count, this.x, this.y);
     ctx.restore();
     ctx.closePath();
     if (this.animFrames <= 0) {

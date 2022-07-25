@@ -1,102 +1,70 @@
 //-Создаём Canvas
 //-Creating a Canvas
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-canvasSize(1000, 1000);
-const objectsRendering = new Array();
-let sampleCycle = objectsRendering.push(new Cycle(500, 500, 100, 'tomato', 'Hello, I am sample', Infinity));
-let boxSample = new Box(200, 200, 200, 0, 'tomato', 'Hello, click on me!', Infinity);
-//-Камера центрирована и двигается в сторону клика
-//-The camera is centered and moves towards the click
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+canvasSize(500, 1060);
 let cameraX = 0;
 let cameraY = 0;
-let clientX;
-let clientY;
-let movementAngle;
-let angleX = 0;
-let angleY = 0;
-canvas.addEventListener('click', (event) => {
-    clientY = event.clientY;
-    clientX = event.clientX;
-    movementAngle = Math.atan2(clientY - canvas.height / 2, clientX - canvas.height / 2);
-    angleX = Math.cos(movementAngle);
-    angleY = Math.sin(movementAngle);
-    console.log(angleX);
+let time = new TextTime(220, 100, undefined, "#fefefe", "1:49");
+let totalScore = new TextMessage(250, 150, "30px", "#c8c5d2", "Total scores");
+let scores = new TextMessage(250, 220, "72px", "#ebe660", 10760);
+let combo = new TextMessage(80, 330, "36px", "#d5207a", "Combo");
+let difficulty = "900";
+let screenClick = {
+  x: undefined,
+  y: undefined,
+  size: 10,
+};
+canvas.addEventListener("click", (e) => {
+  screenClick.x = e.clientX;
+  screenClick.y = e.clientY;
+  crash(yesAnswer, screenClick, () => {
+    console.log("yes!");
+  });
+  crash(noAnswer, screenClick, () => {
+    console.log("no");
+  });
 });
-function camera() {
-    cameraX += angleX;
-    cameraY += angleY;
-    ctx.translate(-cameraX, -cameraY);
-}
+let question = {
+  a: generateNumber(difficulty),
+  b: generateNumber(difficulty),
+  answer: () => question.a + question.b,
+};
+let questionText = new TextMessage(
+  250,
+  580,
+  "90px",
+  "#ffffff",
+  `${question.a}+${question.b - randomAnswer()}`
+);
+let equality = new TextMessage(250, 660, "90px", "#ffffff", "=");
+let questionAnswer = new TextMessage(
+  250,
+  710,
+  "60px",
+  "#da2b3f",
+  question.answer()
+);
+let yesAnswer = new AnswerBubble(120, 830, 80, "#ebe660", "Y");
+let noAnswer = new AnswerBubble(380, 830, 80, "#da2b3f", "N");
 //-Функция отрисовки всех элементов
 //Function of rendering all elements
 function drawAll() {
-    clearCanvas();
-    background('black');
-    camera();
-    render(boxSample);
-    lifeCycle(boxSample);
-//-Специальная функция для зацикливания requestAnimationFrame
-    requestAnimationFrame(drawAll);
-};
-//-Функция управления размерами Canvas
-//-Set canvas size function
-function canvasSize(width, height) {
-    canvas.width = width;
-    canvas.height = height;
-};
-//-Функция очистки Canvas
-//-Clear canvas function
-function clearCanvas() {
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-};
-//-Фукция управления цвета фона Canvas (используй формат строки для цвета)
-//-Set background color function (use string format for "color")
-function background(color) {
-    ctx.beginPath();
-    ctx.resetTransform();
-    ctx.fillStyle = color;
-    ctx.fillRect (0, 0, canvas.width, canvas.height);
-    ctx.closePath();
-};
-//-Функция отривоки массива или обьекта с встроенной функцией draw()
-//-The function of drawing an array or object with a built-in function draw()
-function render(data) {
-    if (Array.isArray(data)) {
-    for(let i = 0; i < data.length; i++) {
-        data[i].draw();
-    }
-    } else {
-        data.draw();
-    }
-};
-//-Функция фильтрации массива по параметру жизненного цикла объекта
-//-Filtering function by object lifecycle parameter
-function lifeCycle(data) {
-    if (Array.isArray(data)) {
-    for(let i = data.length - 1; i >= 0; i--) {
-        if(data[i].lifeCycle <= 0) {
-        data.splice(i, 1);
-    }
-    }
-} else if (data.lifeCycle <= 0) {
-    data.draw = () => {};
+  clearCanvas();
+  background("#0d1b1e");
+  ctx.translate(-cameraX, -cameraY);
+  render(time);
+  render(totalScore);
+  render(scores);
+  render(combo);
+  render(questionText);
+  render(equality);
+  render(questionAnswer);
+  render(yesAnswer);
+  render(noAnswer);
+  //-Специальная функция для зацикливания requestAnimationFrame
+  requestAnimationFrame(drawAll);
 }
-};
-//-Функция обработки столкновения двух кругов и вызова вложенной функции при регистрации
-//-The function of handling the collision of two circles and calling a nested function during registration
-function crash(ObjectOne, ObjectTwo, eventfunction) {
-    let dist = Math.hypot(ObjectOne.x - ObjectTwo.x, ObjectOne.y - ObjectTwo.y);
-    // console.log(dist);
-    if (dist < ObjectOne.size + ObjectTwo.size) { eventfunction() };
-};
-//-Функция обратная обратная crash()
-//-Reverse of crash() func
-function evade(ObjectOne, ObjectTwo, eventfunction) {
-    let dist = Math.hypot(ObjectOne.x - ObjectTwo.x, ObjectOne.y - ObjectTwo.y);
-    // console.log(dist);
-    if (dist > ObjectOne.size + ObjectTwo.size) { eventfunction() };
-};
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
 //-We run the function of rendering all elements on Canvas after loading the page
 window.onload = drawAll();

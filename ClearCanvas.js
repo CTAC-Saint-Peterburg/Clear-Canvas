@@ -7,7 +7,7 @@ let cameraX = 0;
 let cameraY = 0;
 let time = new TextTime(220, 100, undefined, "#fefefe", "1:49");
 let totalScore = new TextMessage(250, 150, "30px", "#c8c5d2", "Total scores");
-let scores = new TextMessage(250, 220, "72px", "#ebe660", 10760);
+let scores = new TextMessage(250, 220, "72px", "#ebe660", 0);
 let combo = new TextMessage(80, 330, "36px", "#d5207a", "Combo");
 let difficulty = "900";
 let screenClick = {
@@ -20,9 +20,17 @@ canvas.addEventListener("click", (e) => {
   screenClick.y = e.clientY;
   crash(yesAnswer, screenClick, () => {
     console.log("yes!");
+    if (questionAnswer.text == questionAnswer.text - intrigue) {
+      scores.text += 100;
+      refreshApp(difficulty);
+    } else refreshApp(difficulty);
   });
   crash(noAnswer, screenClick, () => {
     console.log("no");
+    if (questionAnswer.text != questionAnswer.text - intrigue) {
+      scores.text += 100;
+      refreshApp(difficulty);
+    } else refreshApp(difficulty);
   });
 });
 let question = {
@@ -30,12 +38,13 @@ let question = {
   b: generateNumber(difficulty),
   answer: () => question.a + question.b,
 };
+let intrigue = randomAnswer();
 let questionText = new TextMessage(
   250,
   580,
   "90px",
   "#ffffff",
-  `${question.a}+${question.b - randomAnswer()}`
+  `${question.a}+${question.b - intrigue}`
 );
 let equality = new TextMessage(250, 660, "90px", "#ffffff", "=");
 let questionAnswer = new TextMessage(

@@ -75,3 +75,10 @@ function randomAnswer() {
     return Math.floor(Math.random() * 22);
   } else return 0;
 }
+function refreshApp(d) {
+  question.a = generateNumber(d);
+  question.b = generateNumber(d);
+  intrigue = randomAnswer();
+  questionText.text = `${question.a}+${question.b - intrigue}`;
+  questionAnswer.text = question.answer();
+}

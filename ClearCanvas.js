@@ -5,6 +5,9 @@ const ctx = canvas.getContext("2d");
 canvasSize(500, 1060);
 let cameraX = 0;
 let cameraY = 0;
+let myTimer = {
+  countdown: undefined,
+};
 let time = new TextTime(220, 100, undefined, "#fefefe", "1:49");
 let totalScore = new TextMessage(250, 150, "30px", "#c8c5d2", "Total scores");
 let scores = new TextMessage(250, 220, "72px", "#ebe660", 0);
@@ -80,4 +83,4 @@ function drawAll() {
 }
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
 //-We run the function of rendering all elements on Canvas after loading the page
-window.onload = drawAll();
+(window.onload = drawAll()), timer();

@@ -79,6 +79,9 @@ function refreshApp(d) {
   question.a = generateNumber(d);
   question.b = generateNumber(d);
   intrigue = randomAnswer();
-  questionText.text = `${question.a}+${question.b - intrigue}`;
+  questionText.text = `${question.a}:${question.b - intrigue}`;
   questionAnswer.text = question.answer();
+}
+function timer() {
+  myTimer.countdown = new Date().getTime() + 60000;
 }

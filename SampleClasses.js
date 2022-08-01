@@ -84,13 +84,21 @@ class TextTime {
     this.text = text;
   }
   draw() {
+    let distance = myTimer.countdown - new Date().getTime();
+    let showTimer = {
+      m: Math.floor(distance / 30000),
+      s: Math.floor(distance / 2 / 500),
+    };
+    if (showTimer.m < 0) {
+      alert("stop!");
+    }
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.font = "bold 24px Arial";
     ctx.textAlign = "center";
     ctx.fillText("Time:", this.x, this.y);
     ctx.font = "bold 30px Arial";
-    ctx.fillText(this.text, this.x + 65, this.y);
+    ctx.fillText(`${showTimer.m}:${showTimer.s}`, this.x + 65, this.y);
     ctx.closePath();
   }
 }

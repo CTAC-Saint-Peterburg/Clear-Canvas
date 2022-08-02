@@ -5,6 +5,8 @@ const ctx = canvas.getContext("2d");
 canvasSize(500, 1060);
 let cameraX = 0;
 let cameraY = 0;
+let gameStart = false;
+let openScreen = new FullScreen("sos");
 let myTimer = {
   countdown: undefined,
 };
@@ -21,22 +23,30 @@ let screenClick = {
 canvas.addEventListener("click", (e) => {
   screenClick.x = e.clientX;
   screenClick.y = e.clientY;
-  crash(yesAnswer, screenClick, () => {
-    console.log("yes!");
-    if (questionAnswer.text == questionAnswer.text - intrigue) {
-      scores.text += 100 + 50 * combo.count;
-      combo.count += 1;
-      refreshApp(difficulty);
-    } else refreshApp(difficulty), (combo.count = 0);
-  });
-  crash(noAnswer, screenClick, () => {
-    console.log("no");
-    if (questionAnswer.text != questionAnswer.text - intrigue) {
-      scores.text += 100 + 50 * combo.count;
-      combo.count += 1;
-      refreshApp(difficulty);
-    } else refreshApp(difficulty), (combo.count = 0);
-  });
+  if (!gameStart) {
+    crash(openScreen, screenClick, () => {
+      timer();
+      console.log("Игра началась");
+      gameStart = true;
+    });
+  } else if (gameStart) {
+    crash(yesAnswer, screenClick, () => {
+      console.log("yes!");
+      if (questionAnswer.text == questionAnswer.text - intrigue) {
+        scores.text += 100 + 50 * combo.count;
+        combo.count += 1;
+        refreshApp(difficulty);
+      } else refreshApp(difficulty), (combo.count = 0);
+    });
+    crash(noAnswer, screenClick, () => {
+      console.log("no");
+      if (questionAnswer.text != questionAnswer.text - intrigue) {
+        scores.text += 100 + 50 * combo.count;
+        combo.count += 1;
+        refreshApp(difficulty);
+      } else refreshApp(difficulty), (combo.count = 0);
+    });
+  }
 });
 let question = {
   a: generateNumber(difficulty),
@@ -78,9 +88,10 @@ function drawAll() {
   render(questionAnswer);
   render(yesAnswer);
   render(noAnswer);
+  render(openScreen);
   //-Специальная функция для зацикливания requestAnimationFrame
   requestAnimationFrame(drawAll);
 }
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
 //-We run the function of rendering all elements on Canvas after loading the page
-(window.onload = drawAll()), timer();
+window.onload = drawAll();

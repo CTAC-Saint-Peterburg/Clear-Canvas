@@ -169,3 +169,44 @@ class TextCombo {
     this.animFrames += this.framesCounter * 2;
   }
 }
+class FullScreen {
+  constructor(text) {
+    this.text = text;
+    this.x = 0;
+    this.y = 0;
+    this.size = innerHeight * 2;
+    this.animFrames = 200;
+    this.framesCounter = -1;
+  }
+  draw() {
+    if (!gameStart) {
+      ctx.beginPath();
+      ctx.rect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0d1b1e";
+      ctx.fill();
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.fillStyle = "#ebe660";
+      ctx.font = `bold ${20 + this.animFrames / 5}px Arial`;
+      ctx.textAlign = "center";
+      ctx.fillText("Tap to Start🧠", canvas.width / 2, canvas.height / 2);
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.fillStyle = "#c8c5d2";
+      ctx.font = `bold 30px Arial`;
+      ctx.textAlign = "center";
+      ctx.fillText(
+        `Your best score: ${localStorage.length === 0 ? "play it;)" : ""}`,
+        canvas.width / 2,
+        canvas.height / 2 + 100
+      );
+      ctx.closePath();
+      if (this.animFrames <= 0) {
+        this.framesCounter = 1;
+      } else if (this.animFrames >= 200) {
+        this.framesCounter = -1;
+      }
+      this.animFrames += this.framesCounter * 2;
+    } else return;
+  }
+}

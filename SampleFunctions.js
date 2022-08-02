@@ -85,3 +85,11 @@ function refreshApp(d) {
 function timer() {
   myTimer.countdown = new Date().getTime() + 60000;
 }
+function saveProgress() {
+  if (
+    localStorage.getItem("scores") < scores.text ||
+    localStorage.getItem("scores") == null
+  ) {
+    localStorage.setItem("scores", scores.text);
+  } else return scores.text;
+}

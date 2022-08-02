@@ -90,6 +90,7 @@ class TextTime {
       s: Math.floor(distance / 2 / 500),
     };
     if (showTimer.m < 0) {
+      saveProgress();
       gameStart = false;
       openScreen.gameOver = true;
     }
@@ -178,6 +179,7 @@ class FullScreen {
     this.animFrames = 200;
     this.framesCounter = -1;
     this.gameOver = false;
+    localStorage.length == 0 ? localStorage.setItem("scores", 0) : "";
   }
   draw() {
     if (!gameStart) {
@@ -198,13 +200,17 @@ class FullScreen {
       ctx.closePath();
       ctx.beginPath();
       ctx.fillStyle = "#c8c5d2";
-      ctx.font = `bold 30px Arial`;
+      ctx.font = `bold 26px Arial`;
       ctx.textAlign = "center";
       ctx.fillText(
-        `${this.gameOver == false ? "Your best score:" : "Your score:"}${
-          localStorage.length === 0
-            ? "play it;)"
-            : localStorage.getItem("score")
+        `${this.gameOver == false ? "Your best score: " : "Your score: "}${
+          this.gameOver == false
+            ? localStorage.getItem("scores")
+            : scores.text +
+              " " +
+              "Best score:" +
+              " " +
+              localStorage.getItem("scores")
         }`,
         canvas.width / 2,
         canvas.height / 2 + 100

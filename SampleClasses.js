@@ -90,7 +90,8 @@ class TextTime {
       s: Math.floor(distance / 2 / 500),
     };
     if (showTimer.m < 0) {
-      alert("stop!");
+      gameStart = false;
+      openScreen.gameOver = true;
     }
     ctx.beginPath();
     ctx.fillStyle = this.color;
@@ -170,13 +171,13 @@ class TextCombo {
   }
 }
 class FullScreen {
-  constructor(text) {
-    this.text = text;
+  constructor() {
     this.x = 0;
     this.y = 0;
     this.size = innerHeight * 2;
     this.animFrames = 200;
     this.framesCounter = -1;
+    this.gameOver = false;
   }
   draw() {
     if (!gameStart) {
@@ -189,14 +190,22 @@ class FullScreen {
       ctx.fillStyle = "#ebe660";
       ctx.font = `bold ${20 + this.animFrames / 5}px Arial`;
       ctx.textAlign = "center";
-      ctx.fillText("Tap to Start🧠", canvas.width / 2, canvas.height / 2);
+      ctx.fillText(
+        `${this.gameOver == false ? "Tap to Start🧠" : "Restart😉"}`,
+        canvas.width / 2,
+        canvas.height / 2
+      );
       ctx.closePath();
       ctx.beginPath();
       ctx.fillStyle = "#c8c5d2";
       ctx.font = `bold 30px Arial`;
       ctx.textAlign = "center";
       ctx.fillText(
-        `Your best score: ${localStorage.length === 0 ? "play it;)" : ""}`,
+        `${this.gameOver == false ? "Your best score:" : "Your score:"}${
+          localStorage.length === 0
+            ? "play it;)"
+            : localStorage.getItem("score")
+        }`,
         canvas.width / 2,
         canvas.height / 2 + 100
       );

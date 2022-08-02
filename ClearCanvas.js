@@ -6,7 +6,7 @@ canvasSize(500, 1060);
 let cameraX = 0;
 let cameraY = 0;
 let gameStart = false;
-let openScreen = new FullScreen("sos");
+let openScreen = new FullScreen();
 let myTimer = {
   countdown: undefined,
 };
@@ -27,6 +27,9 @@ canvas.addEventListener("click", (e) => {
     crash(openScreen, screenClick, () => {
       timer();
       console.log("Игра началась");
+      openScreen.gameOver = false;
+      scores.text = 0;
+      combo.count = 0;
       gameStart = true;
     });
   } else if (gameStart) {

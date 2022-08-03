@@ -93,3 +93,46 @@ function saveProgress() {
     localStorage.setItem("scores", scores.text);
   } else return scores.text;
 }
+function mobileScreen() {
+  const pcScreen = 1080;
+  const littleMobileScreen = 2000;
+  const bigMobileScren = 3000;
+  if (pcScreen > innerHeight) {
+    console.log("PC");
+    screenResize.font = 0;
+  } else if (littleMobileScreen > innerHeight) {
+    time.x -= 5;
+    time.y += 60;
+    time.size = 70;
+    //-
+    totalScore.y += 80;
+    totalScore.size = "48px";
+    //-
+    scores.size = "140px";
+    scores.y += 160;
+    //-
+    comboText.y -= 150;
+    comboText.size = "64px";
+    //-
+    combo.y -= 100;
+    combo.x += 50;
+    combo.size = 80;
+    //-
+    questionText.size = "140px";
+    //-
+    equality.size = "100px";
+    //-
+    questionAnswer.size = "100px";
+    questionAnswer.y += 30;
+    //-
+    yesAnswer.x -= 50;
+    yesAnswer.size = 120;
+    //-
+    noAnswer.size = 120;
+    noAnswer.x += 50;
+    //-
+    console.log("littleMobile");
+  } else if (bigMobileScren > innerHeight) {
+    console.log("bigMobile");
+  }
+}

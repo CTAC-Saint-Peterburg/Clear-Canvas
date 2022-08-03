@@ -2,19 +2,104 @@
 //-Creating a Canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-canvasSize(500, 1060);
+canvasSize(innerWidth, innerHeight);
 let cameraX = 0;
 let cameraY = 0;
 let gameStart = false;
+let difficulty = "900";
+let screenResize = {
+  font: 0,
+  x: 0,
+  y: 0,
+  time: {
+    x: 0,
+    y: 0,
+  },
+  totalScore: {
+    font: 0,
+    x: 0,
+    y: 0,
+  },
+};
+let question = {
+  a: generateNumber(difficulty),
+  b: generateNumber(difficulty),
+  answer: () => question.a + question.b,
+};
+//- Обьекты
+//- Стартовый и конечный экран
 let openScreen = new FullScreen();
+//- Переменная таймер
 let myTimer = {
   countdown: undefined,
 };
-let time = new TextTime(220, 100, undefined, "#fefefe", "1:49");
-let totalScore = new TextMessage(250, 150, "30px", "#c8c5d2", "Total scores");
-let scores = new TextMessage(250, 220, "72px", "#ebe660", 0);
-let comboText = new TextMessage(80, 330, "36px", "#d5207a", "Combo");
-let difficulty = "900";
+//- 1 Time: 1:59
+let time = new TextTime(canvas.width / 2 - 50, 80, 50, "#fefefe", "1:49");
+// - 2 Total Score
+let totalScore = new TextMessage(
+  canvas.width / 2 + 10,
+  120,
+  "24px",
+  "#c8c5d2",
+  "Total scores"
+);
+// - 3 scores value 0
+let scores = new TextMessage(canvas.width / 2 + 10, 170, "50px", "#ebe660", 0);
+// - 4 Combo text
+let comboText = new TextMessage(
+  canvas.width / 2 - 80,
+  canvas.height / 2 - 250,
+  "28px",
+  "#d5207a",
+  "Combo"
+);
+// - 5 Combo value x0
+let combo = new TextCombo(0, 0, 40, "#da2b3f", 0);
+let intrigue = randomAnswer();
+let questionText = new TextMessage(
+  canvas.width / 2 + 5,
+  canvas.height / 2,
+  "90px",
+  "#ffffff",
+  `${question.a}+${question.b - intrigue}`
+);
+// - 6 =
+let equality = new TextMessage(
+  canvas.width / 2,
+  canvas.height / 2 + 80,
+  "90px",
+  "#ffffff",
+  "="
+);
+// - 7 answer
+let questionAnswer = new TextMessage(
+  canvas.width / 2,
+  canvas.height / 2 + 130,
+  "60px",
+  "#da2b3f",
+  question.answer()
+);
+// - 8 Yes circle
+let yesAnswer = new AnswerBubble(
+  canvas.width / 2 - 130,
+  canvas.height / 2 + (canvas.height / 100) * 30,
+  80,
+  "#ebe660",
+  "Y",
+  "60px",
+  5
+);
+// - 9 No circle
+let noAnswer = new AnswerBubble(
+  canvas.width / 2 + 130,
+  canvas.height / 2 + (canvas.height / 100) * 30,
+  80,
+  "#da2b3f",
+  "N",
+  "60px",
+  5
+);
+//--------------------
 let screenClick = {
   x: undefined,
   y: undefined,
@@ -51,30 +136,6 @@ canvas.addEventListener("click", (e) => {
     });
   }
 });
-let question = {
-  a: generateNumber(difficulty),
-  b: generateNumber(difficulty),
-  answer: () => question.a + question.b,
-};
-let intrigue = randomAnswer();
-let questionText = new TextMessage(
-  250,
-  580,
-  "90px",
-  "#ffffff",
-  `${question.a}+${question.b - intrigue}`
-);
-let equality = new TextMessage(250, 660, "90px", "#ffffff", "=");
-let questionAnswer = new TextMessage(
-  250,
-  710,
-  "60px",
-  "#da2b3f",
-  question.answer()
-);
-let combo = new TextCombo(0, 430, 40, "#da2b3f", 0);
-let yesAnswer = new AnswerBubble(120, 830, 80, "#ebe660", "Y");
-let noAnswer = new AnswerBubble(380, 830, 80, "#da2b3f", "N");
 //-Функция отрисовки всех элементов
 //Function of rendering all elements
 function drawAll() {
@@ -97,4 +158,4 @@ function drawAll() {
 }
 //-Запускаем функцию отрисовки всех элементов на Canvas после загрузки страницы
 //-We run the function of rendering all elements on Canvas after loading the page
-window.onload = drawAll();
+(window.onload = mobileScreen()), drawAll();

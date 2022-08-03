@@ -96,11 +96,15 @@ class TextTime {
     }
     ctx.beginPath();
     ctx.fillStyle = this.color;
-    ctx.font = "bold 24px Arial";
+    ctx.font = `bold ${this.size}px Arial`;
     ctx.textAlign = "center";
     ctx.fillText("Time:", this.x, this.y);
-    ctx.font = "bold 30px Arial";
-    ctx.fillText(`${showTimer.m}:${showTimer.s}`, this.x + 65, this.y);
+    ctx.font = `bold ${this.size + 4}px Arial`;
+    ctx.fillText(
+      `${showTimer.m}:${showTimer.s}`,
+      this.x + 80 + this.size * 1.2,
+      this.y
+    );
     ctx.closePath();
   }
 }
@@ -122,12 +126,14 @@ class TextMessage {
   }
 }
 class AnswerBubble {
-  constructor(x, y, size, color, text) {
+  constructor(x, y, size, color, text, fontSize, lineWidth) {
     this.x = x;
     this.y = y;
     this.size = size;
     this.color = color;
     this.text = text;
+    this.fontSize = fontSize;
+    this.lineWidth = lineWidth;
   }
   draw() {
     ctx.beginPath();
@@ -136,7 +142,7 @@ class AnswerBubble {
     ctx.stroke();
     ctx.lineWidth = 5;
     ctx.fillStyle = this.color;
-    ctx.font = "bold 60px Arial";
+    ctx.font = `bold ${this.fontSize} Arial`;
     ctx.textAlign = "center";
     ctx.fillText(this.text, this.x, this.y + 20);
     ctx.closePath();
@@ -155,7 +161,7 @@ class TextCombo {
   draw() {
     ctx.beginPath();
     ctx.save();
-    ctx.translate(-50, 0);
+    ctx.translate(canvas.width / 2 - 60, canvas.height / 2 - 200);
     ctx.rotate((-20 * Math.PI) / 180);
     ctx.fillStyle = this.color;
     ctx.font = `bold ${this.size + this.animFrames / 10}px Arial`;

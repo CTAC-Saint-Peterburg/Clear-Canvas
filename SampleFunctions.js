@@ -99,7 +99,6 @@ function mobileScreen() {
   const bigMobileScren = 3000;
   if (pcScreen > innerHeight) {
     console.log("PC");
-    screenResize.font = 0;
   } else if (littleMobileScreen > innerHeight) {
     time.x -= 5;
     time.y += 60;
@@ -131,6 +130,7 @@ function mobileScreen() {
     noAnswer.size = 120;
     noAnswer.x += 50;
     //-
+    openScreen.textSize = 46;
     console.log("littleMobile");
   } else if (bigMobileScren > innerHeight) {
     console.log("bigMobile");

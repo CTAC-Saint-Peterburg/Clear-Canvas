@@ -7,20 +7,6 @@ let cameraX = 0;
 let cameraY = 0;
 let gameStart = false;
 let difficulty = "900";
-let screenResize = {
-  font: 0,
-  x: 0,
-  y: 0,
-  time: {
-    x: 0,
-    y: 0,
-  },
-  totalScore: {
-    font: 0,
-    x: 0,
-    y: 0,
-  },
-};
 let question = {
   a: generateNumber(difficulty),
   b: generateNumber(difficulty),

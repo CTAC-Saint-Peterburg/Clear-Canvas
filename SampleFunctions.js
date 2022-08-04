@@ -133,6 +133,51 @@ function mobileScreen() {
     openScreen.textSize = 46;
     console.log("littleMobile");
   } else if (bigMobileScren > innerHeight) {
+    time.x -= 5;
+    time.y += 60;
+    time.size = 70;
+    //-
+    totalScore.y += 80;
+    totalScore.size = "48px";
+    //-
+    scores.size = "140px";
+    scores.y += 160;
+    //-
+    comboText.y -= 150;
+    comboText.size = "64px";
+    //-
+    combo.y -= 100;
+    combo.x += 50;
+    combo.size = 80;
+    //-
+    questionText.size = "140px";
+    //-
+    equality.size = "100px";
+    //-
+    questionAnswer.size = "100px";
+    questionAnswer.y += 30;
+    //-
+    yesAnswer.x -= 50;
+    yesAnswer.size = 120;
+    //-
+    noAnswer.size = 120;
+    noAnswer.x += 50;
+    //-
+    openScreen.textSize = 46;
     console.log("bigMobile");
+  }
+}
+function spawnParticles(color) {
+  particles = [];
+  for (let i = 0; i < 6; i++) {
+    particles.push(
+      new Particle(
+        canvas.width / 2,
+        canvas.height / 2,
+        20,
+        `${color}`,
+        Math.floor(Math.random() * 100)
+      )
+    );
   }
 }

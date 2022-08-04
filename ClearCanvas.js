@@ -12,6 +12,7 @@ let question = {
   b: generateNumber(difficulty),
   answer: () => question.a + question.b,
 };
+let particles = new Array();
 //- Обьекты
 //- Стартовый и конечный экран
 let openScreen = new FullScreen();
@@ -107,18 +108,28 @@ canvas.addEventListener("click", (e) => {
     crash(yesAnswer, screenClick, () => {
       console.log("yes!");
       if (questionAnswer.text == questionAnswer.text - intrigue) {
+        spawnParticles("rgba(193, 223, 31, 0.4)");
         scores.text += 100 + 50 * combo.count;
         combo.count += 1;
         refreshApp(difficulty);
-      } else refreshApp(difficulty), (combo.count = 0);
+      } else
+        spawnParticles("rgba(190, 80, 120, 0.3)"),
+          refreshApp(difficulty),
+          (combo.count = 0),
+          scores.text > 0 && scores.text != 50 ? (scores.text -= 100) : "";
     });
     crash(noAnswer, screenClick, () => {
       console.log("no");
       if (questionAnswer.text != questionAnswer.text - intrigue) {
+        spawnParticles("rgba(193, 223, 31, 0.4)");
         scores.text += 100 + 50 * combo.count;
         combo.count += 1;
         refreshApp(difficulty);
-      } else refreshApp(difficulty), (combo.count = 0);
+      } else
+        spawnParticles("rgba(190, 80, 120, 0.3)"),
+          refreshApp(difficulty),
+          (combo.count = 0),
+          scores.text > 0 && scores.text != 50 ? (scores.text -= 100) : "";
     });
   }
 });
@@ -138,6 +149,7 @@ function drawAll() {
   render(questionAnswer);
   render(yesAnswer);
   render(noAnswer);
+  render(particles);
   render(openScreen);
   //-Специальная функция для зацикливания requestAnimationFrame
   requestAnimationFrame(drawAll);

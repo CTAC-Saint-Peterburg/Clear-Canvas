@@ -232,3 +232,29 @@ class FullScreen {
     } else return;
   }
 }
+class Particle {
+  constructor(x, y, size, color, sign) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.color = color;
+    this.sign = sign >= 50 ? -1 : 1;
+    this.xVector = Math.random() * 3 * this.sign;
+    this.yVector = Math.random() * 3 * this.sign;
+    this.animFrames = 200;
+  }
+  draw() {
+    if (this.animFrames > 0) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+      ctx.lineWidth = 5;
+      ctx.closePath();
+      this.x += this.xVector;
+      this.y += this.yVector;
+      this.animFrames += -1;
+    }
+    return;
+  }
+}

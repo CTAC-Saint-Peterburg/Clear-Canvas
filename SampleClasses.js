@@ -183,6 +183,7 @@ class FullScreen {
     this.y = 0;
     this.size = innerHeight * 2;
     this.textSize = 20;
+    this.secondTextSize = 26;
     this.animFrames = 200;
     this.framesCounter = -1;
     this.gameOver = false;
@@ -207,7 +208,7 @@ class FullScreen {
       ctx.closePath();
       ctx.beginPath();
       ctx.fillStyle = "#c8c5d2";
-      ctx.font = `bold ${26 + this.textSize / 2}px Arial`;
+      ctx.font = `bold ${this.secondTextSize + this.textSize / 2}px Arial`;
       ctx.textAlign = "center";
       ctx.fillText(
         `${this.gameOver == false ? "Your best score: " : "Your score: "}${

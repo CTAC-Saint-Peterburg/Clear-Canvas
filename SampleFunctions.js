@@ -94,10 +94,47 @@ function saveProgress() {
   } else return scores.text;
 }
 function mobileScreen() {
+  const verySmallScreen = 900;
   const pcScreen = 1080;
   const littleMobileScreen = 2000;
   const bigMobileScren = 3000;
-  if (pcScreen > innerHeight) {
+  if (verySmallScreen > innerHeight) {
+    //      time.x -= 5;
+    //      time.y += 60;
+    time.size = 30;
+    //-
+    //      totalScore.y += 80;
+    totalScore.size = "20px";
+    //-
+    scores.size = "46px";
+    //      scores.y += 160;
+    //-
+    comboText.y += 70;
+    comboText.size = "32px";
+    //-
+    combo.y += 70;
+    //      combo.x += 50;
+    combo.size = 30;
+    //-
+    questionText.size = "75px";
+    //-
+    equality.size = "75px";
+    equality.y -= 15;
+    //-
+    questionAnswer.size = "46px";
+    questionAnswer.y -= 20;
+    //-
+    yesAnswer.x += 30;
+    yesAnswer.size = 50;
+    yesAnswer.fontSize = "48px";
+    //-
+    noAnswer.size = 50;
+    noAnswer.x -= 30;
+    noAnswer.fontSize = "48px";
+    //-
+    openScreen.textSize = 12;
+    openScreen.secondTextSize = 12;
+  } else if (pcScreen > innerHeight) {
     console.log("PC");
   } else if (littleMobileScreen > innerHeight) {
     time.x -= 5;

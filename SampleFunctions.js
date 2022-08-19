@@ -86,6 +86,13 @@ function timer() {
   myTimer.countdown = new Date().getTime() + 60000;
 }
 function saveProgress() {
+  if (scores.text >= 2000) {
+    let x = Number(localStorage.getItem("coins"));
+    localStorage.setItem(
+      "coins",
+      (x += Math.floor(Number(scores.text) / 2000))
+    );
+  }
   if (
     localStorage.getItem("scores") < scores.text ||
     localStorage.getItem("scores") == null
@@ -136,6 +143,8 @@ function mobileScreen() {
     openScreen.secondTextSize = 12;
   } else if (pcScreen > innerHeight) {
     console.log("PC");
+    yesAnswer.y -= 30;
+    noAnswer.y -= 30;
   } else if (littleMobileScreen > innerHeight) {
     time.x -= 5;
     time.y += 60;
@@ -163,9 +172,11 @@ function mobileScreen() {
     //-
     yesAnswer.x -= 50;
     yesAnswer.size = 120;
+    yesAnswer.y -= 30;
     //-
     noAnswer.size = 120;
     noAnswer.x += 50;
+    noAnswer.y -= 30;
     //-
     openScreen.textSize = 46;
     console.log("littleMobile");
@@ -196,9 +207,11 @@ function mobileScreen() {
     //-
     yesAnswer.x -= 50;
     yesAnswer.size = 120;
+    yesAnswer.y -= 30;
     //-
     noAnswer.size = 120;
     noAnswer.x += 50;
+    noAnswer.y -= 30;
     //-
     openScreen.textSize = 46;
     console.log("bigMobile");
@@ -217,4 +230,7 @@ function spawnParticles(color) {
       )
     );
   }
+}
+function resetShopButton() {
+  shopButton.style.display = "";
 }

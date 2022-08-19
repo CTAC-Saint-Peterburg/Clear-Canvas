@@ -82,6 +82,7 @@ class TextTime {
     this.size = size;
     this.color = color;
     this.text = text;
+    this.saveStatus = true;
   }
   draw() {
     let distance = myTimer.countdown - new Date().getTime();
@@ -90,9 +91,14 @@ class TextTime {
       s: Math.floor(distance / 2 / 500),
     };
     if (showTimer.m < 0) {
-      saveProgress();
-      gameStart = false;
-      openScreen.gameOver = true;
+      if (this.saveStatus) {
+        saveProgress();
+        resetShopButton();
+
+        gameStart = false;
+        openScreen.gameOver = true;
+        this.saveStatus = false;
+      }
     }
     ctx.beginPath();
     ctx.fillStyle = this.color;
@@ -187,7 +193,6 @@ class FullScreen {
     this.animFrames = 200;
     this.framesCounter = -1;
     this.gameOver = false;
-    localStorage.length == 0 ? localStorage.setItem("scores", 0) : "";
   }
   draw() {
     if (!gameStart) {
@@ -221,7 +226,17 @@ class FullScreen {
               localStorage.getItem("scores")
         }`,
         canvas.width / 2,
-        canvas.height / 2 + 100
+        canvas.height / 3 + 50
+      );
+      ctx.closePath();
+      ctx.beginPath();
+      ctx.fillStyle = "#ebe660";
+      ctx.font = `bold ${this.secondTextSize * 2}px Arial`;
+      ctx.textAlign = "center";
+      ctx.fillText(
+        `Coins: ${localStorage.getItem("coins") + "💰"}`,
+        canvas.width / 2,
+        canvas.height / 4
       );
       ctx.closePath();
       if (this.animFrames <= 0) {
@@ -257,5 +272,55 @@ class Particle {
       this.animFrames += -1;
     }
     return;
+  }
+}
+class UserInterface {
+  constructor(settingsOBJ, renderArray) {
+    this.renderStatus = settingsOBJ.renderStatus;
+    this.x = settingsOBJ.x;
+    this.y = settingsOBJ.y;
+    this.sizeX = settingsOBJ.sizeX;
+    this.sizeY = settingsOBJ.sizeY;
+    this.color = settingsOBJ.color;
+    this.renderArray = renderArray;
+    this.renderArray.forEach((element) => {
+      element.x += this.x;
+      element.y += this.y;
+    });
+    //state manager
+    this.stateManagerFuncSettings = function () {
+      if (settingsOBJ != this.x) {
+        this.renderArray.forEach((element) => {
+          element.x -= settingsOBJ.x;
+          element.y -= settingsOBJ.y;
+          element.x += this.x;
+          element.y += this.y;
+        });
+        settingsOBJ.x = this.x;
+        settingsOBJ.y = this.y;
+        settingsOBJ.color = this.color;
+        settingsOBJ.sizeX = this.sizeX;
+        settingsOBJ.sizeY = this.sizeY;
+      }
+    };
+    //
+    this.stateManagerFuncArray = function () {
+      if (this.renderArray != renderArray) {
+        this.renderArray = renderArray;
+      }
+    };
+    //-
+  }
+  draw() {
+    if (this.renderStatus) {
+      this.stateManagerFuncSettings();
+      this.stateManagerFuncArray();
+      ctx.beginPath();
+      ctx.rect(this.x, this.y, this.sizeX, this.sizeY);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+      ctx.closePath();
+      render(this.renderArray);
+    } else return;
   }
 }

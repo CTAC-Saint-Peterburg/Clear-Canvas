@@ -12,6 +12,14 @@ let question = {
   b: generateNumber(difficulty),
   answer: () => question.a + question.b,
 };
+//-сохранение информации
+if (localStorage.length == 0) {
+  localStorage.setItem("scores", 0);
+  localStorage.setItem("coins", 0);
+} else if (localStorage.getItem("coins") == null) {
+  localStorage.setItem("coins", 0);
+}
+//
 let particles = new Array();
 //- Обьекты
 //- Стартовый и конечный экран
@@ -92,6 +100,9 @@ let screenClick = {
   y: undefined,
   size: 10,
 };
+//-ui test
+
+//--------------------
 canvas.addEventListener("click", (e) => {
   screenClick.x = e.clientX;
   screenClick.y = e.clientY;
@@ -99,10 +110,15 @@ canvas.addEventListener("click", (e) => {
     crash(openScreen, screenClick, () => {
       timer();
       console.log("Игра началась");
+      shopButton.style.display = "none";
+      shopWindow.style.display = "none";
       openScreen.gameOver = false;
       scores.text = 0;
       combo.count = 0;
       gameStart = true;
+      //костыль
+      time.saveStatus = true;
+      //
     });
   } else if (gameStart) {
     crash(yesAnswer, screenClick, () => {

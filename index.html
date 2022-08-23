@@ -45,12 +45,38 @@
           position: relative;
           margin: auto;
           top: 4%;
-          background-color: rgb(43, 78, 196);
+          background-color: rgb(35 65 72);
           border-radius: 25%;
           width: 400px;
           height: 400px;
+          font-family: Arial;
+          text-align: center;
+          color: #ebe660;
         "
-      ></div>
+      >
+        <h2 style="margin: 10% 0 0 0%; display: inline-flex; font-size: 30px">
+          Skin name:
+          <p id="pName" style="margin: 0 0 0 0">Undefined</p>
+        </h2>
+        <div
+          id="previewSkin"
+          style="
+            margin: auto;
+            width: 50%;
+            height: 50%;
+            background-color: #ebe660;
+            border-radius: 20px;
+            font-size: 100px;
+            text-align: center;
+          "
+        >
+          🐹
+        </div>
+        <h3 style="display: inline-flex; margin: 10% 0 0 0%; font-size: 30px">
+          Price:
+          <p id="pPrice" style="margin: 0 0 0 0">Undefined</p>
+        </h3>
+      </div>
       <div
         id="shopUnitsButtons"
         style="
@@ -62,42 +88,72 @@
           /* background-color: green; */
         "
       >
-        <button
+        <div
           id="shopButtonForward"
           style="
+            display: inline-flex;
             position: relative;
             margin-top: 2%;
             width: 100%;
-            height: 30%;
+            height: 33%;
             border: 0;
             border-radius: 12px;
-            background-color: #49eb37;
+            /* background-color: #49eb37; */
             color: white;
             font-size: 24px;
             font-weight: 600;
           "
         >
-          Forward
-        </button>
+          <button
+            style="
+              /* display: inline-block; */
+              position: relative;
+              margin-right: 4%;
+              width: 33%;
+              height: 100%;
+              border: 0;
+              background-color: aqua;
+              border-radius: 12px;
+              font-size: 50px;
+            "
+            onclick="shopScrollSkin('left')"
+          >
+            ◀️
+          </button>
+          <button
+            style="
+              /* display: inline-block; */
+              position: relative;
+              margin-right: 4%;
+              width: 30%;
+              height: 100%;
+              border: 0;
+              background-color: aqua;
+              border-radius: 12px;
+              font-size: 50px;
+            "
+            onclick="chosenSkin = scrollSkin"
+          >
+            ✅
+          </button>
+          <button
+            style="
+              /* display: inline-block; */
+              position: relative;
+              width: 33%;
+              height: 100%;
+              border: 0;
+              background-color: aqua;
+              border-radius: 12px;
+              font-size: 50px;
+            "
+            onclick="shopScrollSkin('right')"
+          >
+            ▶️
+          </button>
+        </div>
         <button
           id="shopButtonBack"
-          style="
-            position: relative;
-            margin-top: 2%;
-            width: 100%;
-            height: 30%;
-            border: 0;
-            border-radius: 12px;
-            background-color: #49eb37;
-            color: white;
-            font-size: 24px;
-            font-weight: 600;
-          "
-        >
-          Back
-        </button>
-        <button
-          id="shopButtonAccept"
           style="
             position: relative;
             margin-top: 2%;
@@ -111,13 +167,34 @@
             font-weight: 600;
           "
         >
-          Accept
+          Buy
+        </button>
+        <button
+          id="shopButtonAccept"
+          style="
+            position: relative;
+            margin-top: 2%;
+            width: 100%;
+            height: 30%;
+            border: 0;
+            border-radius: 12px;
+            background-color: #da2b3f;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+          "
+          onclick="shopWindow.style.display = 'none'"
+        >
+          Back
         </button>
       </div>
     </div>
     <script>
+      let previewSkin = document.getElementById("previewSkin");
       let shopButton = document.getElementById("shopButton");
       let shopWindow = document.getElementById("shopWindow");
+      let pPrice = document.getElementById("pPrice");
+      let pName = document.getElementById("pName");
     </script>
     <script src="SampleFunctions.js"></script>
     <script src="SampleClasses.js"></script>

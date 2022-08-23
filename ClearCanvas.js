@@ -12,6 +12,19 @@ let question = {
   b: generateNumber(difficulty),
   answer: () => question.a + question.b,
 };
+//-скины партикля
+
+let particleSkins = [
+  { yes: 0, no: 0, name: "Default", price: 0, avatar: "NO" },
+  { yes: 1, no: 0, name: "Hamster", price: 3, avatar: "🐹" },
+  { yes: 2, no: 0, name: "Alien", price: 10, avatar: "👽" },
+  { yes: 3, no: 0, name: "Crown", price: 30, avatar: "👑" },
+];
+let scrollSkin = 0;
+let chosenSkin = 0;
+previewSkin.innerText = particleSkins[scrollSkin].avatar;
+pName.innerText = particleSkins[scrollSkin].name;
+pPrice.innerText = particleSkins[scrollSkin].price;
 //-сохранение информации
 if (localStorage.length == 0) {
   localStorage.setItem("scores", 0);
@@ -124,12 +137,15 @@ canvas.addEventListener("click", (e) => {
     crash(yesAnswer, screenClick, () => {
       console.log("yes!");
       if (questionAnswer.text == questionAnswer.text - intrigue) {
-        spawnParticles("rgba(193, 223, 31, 0.4)");
+        spawnParticles(
+          "rgba(193, 223, 31, 0.4)",
+          particleSkins[chosenSkin].yes
+        );
         scores.text += 100 + 50 * combo.count;
         combo.count += 1;
         refreshApp(difficulty);
       } else
-        spawnParticles("rgba(190, 80, 120, 0.3)"),
+        spawnParticles("rgba(190, 80, 120, 0.3)", particleSkins[chosenSkin].no),
           refreshApp(difficulty),
           (combo.count = 0),
           scores.text > 0 && scores.text != 50 ? (scores.text -= 100) : "";
@@ -137,12 +153,15 @@ canvas.addEventListener("click", (e) => {
     crash(noAnswer, screenClick, () => {
       console.log("no");
       if (questionAnswer.text != questionAnswer.text - intrigue) {
-        spawnParticles("rgba(193, 223, 31, 0.4)");
+        spawnParticles(
+          "rgba(193, 223, 31, 0.4)",
+          particleSkins[chosenSkin].yes
+        );
         scores.text += 100 + 50 * combo.count;
         combo.count += 1;
         refreshApp(difficulty);
       } else
-        spawnParticles("rgba(190, 80, 120, 0.3)"),
+        spawnParticles("rgba(190, 80, 120, 0.3)", particleSkins[chosenSkin].no),
           refreshApp(difficulty),
           (combo.count = 0),
           scores.text > 0 && scores.text != 50 ? (scores.text -= 100) : "";

@@ -217,7 +217,7 @@ function mobileScreen() {
     console.log("bigMobile");
   }
 }
-function spawnParticles(color) {
+function spawnParticles(color, particleSkin) {
   particles = [];
   for (let i = 0; i < 6; i++) {
     particles.push(
@@ -226,11 +226,25 @@ function spawnParticles(color) {
         canvas.height / 2,
         20,
         `${color}`,
-        Math.floor(Math.random() * 100)
+        Math.floor(Math.random() * 100),
+        particleSkin
       )
     );
   }
 }
 function resetShopButton() {
   shopButton.style.display = "";
+}
+function shopScrollSkin(direction) {
+  if (direction === "left") {
+    scrollSkin >= 1 ? (scrollSkin += -1) : (scrollSkin = 3);
+    previewSkin.innerText = particleSkins[scrollSkin].avatar;
+    pName.innerText = particleSkins[scrollSkin].name;
+    pPrice.innerText = particleSkins[scrollSkin].price;
+  } else if (direction === "right") {
+    scrollSkin <= 2 ? (scrollSkin += 1) : (scrollSkin = 0);
+    previewSkin.innerText = particleSkins[scrollSkin].avatar;
+    pName.innerText = particleSkins[scrollSkin].name;
+    pPrice.innerText = particleSkins[scrollSkin].price;
+  }
 }

@@ -249,7 +249,7 @@ class FullScreen {
   }
 }
 class Particle {
-  constructor(x, y, size, color, sign) {
+  constructor(x, y, size, color, sign, particleSkin) {
     this.x = x;
     this.y = y;
     this.size = size;
@@ -258,15 +258,39 @@ class Particle {
     this.xVector = Math.random() * 3 * this.sign;
     this.yVector = Math.random() * 3 * this.sign;
     this.animFrames = 200;
+    this.particleSkin = particleSkin;
   }
   draw() {
     if (this.animFrames > 0) {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-      ctx.lineWidth = 5;
-      ctx.closePath();
+      if (this.particleSkin == 0) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.lineWidth = 5;
+        ctx.closePath();
+      } else if (this.particleSkin == 1) {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.font = `bold ${70}px Arial`;
+        ctx.textAlign = "center";
+        ctx.fillText("🐹", this.x, this.y);
+        ctx.closePath();
+      } else if (this.particleSkin == 2) {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.font = `bold ${70}px Arial`;
+        ctx.textAlign = "center";
+        ctx.fillText("👽", this.x, this.y);
+        ctx.closePath();
+      } else if (this.particleSkin == 3) {
+        ctx.beginPath();
+        ctx.fillStyle = this.color;
+        ctx.font = `bold ${70}px Arial`;
+        ctx.textAlign = "center";
+        ctx.fillText("👑", this.x, this.y);
+        ctx.closePath();
+      }
       this.x += this.xVector;
       this.y += this.yVector;
       this.animFrames += -1;

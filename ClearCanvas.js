@@ -13,13 +13,24 @@ let question = {
   answer: () => question.a + question.b,
 };
 //-скины партикля
-
+if (localStorage.shop == undefined) {
+  localStorage.setItem("shop", [0]);
+}
+//
+let shopCartDataSetup = localStorage.getItem("shop");
+shopCartDataSetup = shopCartDataSetup.split(",").map(Number);
+console.log(shopCartDataSetup);
 let particleSkins = [
   { yes: 0, no: 0, name: "Default", price: 0, avatar: "NO" },
   { yes: 1, no: 0, name: "Hamster", price: 3, avatar: "🐹" },
   { yes: 2, no: 0, name: "Alien", price: 10, avatar: "👽" },
   { yes: 3, no: 0, name: "Crown", price: 30, avatar: "👑" },
 ];
+//
+for (let i = 0; i < shopCartDataSetup.length; i++) {
+  particleSkins[shopCartDataSetup[i]].price = 0;
+}
+//
 let scrollSkin = 0;
 let chosenSkin = 0;
 previewSkin.innerText = particleSkins[scrollSkin].avatar;

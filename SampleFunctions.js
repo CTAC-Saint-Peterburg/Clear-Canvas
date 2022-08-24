@@ -248,3 +248,28 @@ function shopScrollSkin(direction) {
     pPrice.innerText = particleSkins[scrollSkin].price;
   }
 }
+function acceptButton() {
+  chosenSkin = scrollSkin;
+}
+function buyButton() {
+  let coins = localStorage.getItem("coins");
+  let shopCartData = localStorage.getItem("shop");
+  //
+  //
+  if (coins >= particleSkins[scrollSkin].price) {
+    //
+    let coinsUpdate = coins - particleSkins[scrollSkin].price;
+    //
+    localStorage.setItem("coins", coinsUpdate);
+    //
+    particleSkins[scrollSkin].price = 0;
+    pPrice.innerText = particleSkins[scrollSkin].price;
+    //
+    if (shopCartData.includes(String(scrollSkin))) {
+      // console.log("already sold");
+    } else {
+      localStorage.setItem("shop", [shopCartData, scrollSkin]);
+    }
+    //
+  } else alert("cannot buy");
+}

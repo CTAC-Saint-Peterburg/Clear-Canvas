@@ -5,185 +5,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="user-scalable="no" />
     <title>ClearCanvas</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body style="margin: 0 0 0 0; overflow: hidden">
     <canvas id="canvas" style="margin: 0 0 0 0"></canvas>
     <button
       id="shopButton"
-      style="
-        position: absolute;
-        top: 60%;
-        left: 25%;
-        width: 50%;
-        height: 100px;
-        background-color: #ebe660;
-        border-radius: 25px;
-        font-size: 40px;
-        color: white;
-        border: 0px;
-      "
+      class="shopButton"
       onclick="shopWindow.style.display = 'block'"
     >
       Shop<b>🛒</b>
     </button>
-    <div
-      id="shopWindow"
-      style="
-        position: absolute;
-        top: 10%;
-        left: 10%;
-        background-color: #0d1b1e;
-        width: 80%;
-        height: 80%;
-        border-radius: 0px;
-        display: none;
-      "
-    >
-      <div
-        id="shopUnit1"
-        style="
-          position: relative;
-          margin: auto;
-          top: 4%;
-          background-color: rgb(35 65 72);
-          border-radius: 25%;
-          width: 400px;
-          height: 400px;
-          font-family: Arial;
-          text-align: center;
-          color: #ebe660;
-        "
-      >
+    <div id="shopWindow" class="shopWindow">
+      <div id="shopUnit1" class="shopUnit">
         <h2 style="margin: 10% 0 0 0%; display: inline-flex; font-size: 30px">
           Skin name:
           <p id="pName" style="margin: 0 0 0 0">Undefined</p>
         </h2>
-        <div
-          id="previewSkin"
-          style="
-            margin: auto;
-            width: 50%;
-            height: 50%;
-            background-color: #ebe660;
-            border-radius: 20px;
-            font-size: 100px;
-            text-align: center;
-          "
-        >
-          🐹
-        </div>
+        <div id="previewSkin" class="previewSkin">🐹</div>
         <h3 style="display: inline-flex; margin: 10% 0 0 0%; font-size: 30px">
           Price:
           <p id="pPrice" style="margin: 0 0 0 0">Undefined</p>
         </h3>
       </div>
-      <div
-        id="shopUnitsButtons"
-        style="
-          position: relative;
-          margin: auto;
-          top: 5%;
-          width: 400px;
-          height: 300px;
-          /* background-color: green; */
-        "
-      >
-        <div
-          id="shopButtonForward"
-          style="
-            display: inline-flex;
-            position: relative;
-            margin-top: 2%;
-            width: 100%;
-            height: 33%;
-            border: 0;
-            border-radius: 12px;
-            /* background-color: #49eb37; */
-            color: white;
-            font-size: 24px;
-            font-weight: 600;
-          "
-        >
-          <button
-            style="
-              /* display: inline-block; */
-              position: relative;
-              margin-right: 4%;
-              width: 33%;
-              height: 100%;
-              border: 0;
-              background-color: aqua;
-              border-radius: 12px;
-              font-size: 50px;
-            "
-            onclick="shopScrollSkin('left')"
-          >
+      <div id="shopUnitsButtons" class="shopUnitsButtons">
+        <div id="shopButtonForward" class="shopButtonForward">
+          <button class="shopLeftButton" onclick="shopScrollSkin('left')">
             ◀️
           </button>
-          <button
-            style="
-              /* display: inline-block; */
-              position: relative;
-              margin-right: 4%;
-              width: 30%;
-              height: 100%;
-              border: 0;
-              background-color: aqua;
-              border-radius: 12px;
-              font-size: 50px;
-            "
-            onclick="acceptButton()"
-          >
-            ✅
-          </button>
-          <button
-            style="
-              /* display: inline-block; */
-              position: relative;
-              width: 33%;
-              height: 100%;
-              border: 0;
-              background-color: aqua;
-              border-radius: 12px;
-              font-size: 50px;
-            "
-            onclick="shopScrollSkin('right')"
-          >
+          <button class="shopAcceptButton" onclick="acceptButton()">✅</button>
+          <button class="shopRightButton" onclick="shopScrollSkin('right')">
             ▶️
           </button>
         </div>
+        <button id="" class="shopBuyButton" onclick="buyButton()">Buy</button>
         <button
-          id="shopButtonBack"
-          style="
-            position: relative;
-            margin-top: 2%;
-            width: 100%;
-            height: 30%;
-            border: 0;
-            border-radius: 12px;
-            background-color: #ebe660;
-            color: white;
-            font-size: 24px;
-            font-weight: 600;
-          "
-          onclick="buyButton()"
-        >
-          Buy
-        </button>
-        <button
-          id="shopButtonAccept"
-          style="
-            position: relative;
-            margin-top: 2%;
-            width: 100%;
-            height: 30%;
-            border: 0;
-            border-radius: 12px;
-            background-color: #da2b3f;
-            color: white;
-            font-size: 24px;
-            font-weight: 600;
-          "
+          id="shopExit"
+          class="shopExitButton"
           onclick="shopWindow.style.display = 'none'"
         >
           Back

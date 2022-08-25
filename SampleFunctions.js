@@ -249,7 +249,10 @@ function shopScrollSkin(direction) {
   }
 }
 function acceptButton() {
-  chosenSkin = scrollSkin;
+  let x = shopCartDataSetup.filter((x) => x == scrollSkin);
+  if (x == scrollSkin) {
+    chosenSkin = scrollSkin;
+  } else return;
 }
 function buyButton() {
   let coins = localStorage.getItem("coins");
@@ -271,5 +274,6 @@ function buyButton() {
       localStorage.setItem("shop", [shopCartData, scrollSkin]);
     }
     //
-  } else alert("cannot buy");
+  }
+  console.log("cannot buy");
 }

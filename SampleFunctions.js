@@ -249,7 +249,10 @@ function shopScrollSkin(direction) {
   }
 }
 function acceptButton() {
-  let x = shopCartDataSetup.filter((x) => x == scrollSkin);
+  //sCD - shopCartData hot fix
+  let sCD = localStorage.getItem("shop");
+  sCD = sCD.split(",").map(Number);
+  let x = sCD.filter((x) => x == scrollSkin);
   if (x == scrollSkin) {
     chosenSkin = scrollSkin;
   } else return;

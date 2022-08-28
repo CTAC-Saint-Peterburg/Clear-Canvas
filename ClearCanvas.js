@@ -125,7 +125,22 @@ let screenClick = {
   size: 10,
 };
 //-ui test
-
+// let bob = new Cycle(50, 50, 50, "gold", "1");
+// let bobo = new Cycle(50, 150, 50, "gold", "2");
+// let boboo = new Cycle(250, 50, 50, "gold", "3");
+// let bip = new Array();
+// bip.push(bob, bobo, boboo);
+// let hru = new Div(
+//   {
+//     render: true,
+//     x: 100,
+//     y: 100,
+//     width: 200,
+//     height: 200,
+//     color: "red",
+//   },
+//   bip
+// );
 //--------------------
 canvas.addEventListener("click", (e) => {
   screenClick.x = e.clientX;
@@ -197,6 +212,7 @@ function drawAll() {
   render(noAnswer);
   render(particles);
   render(openScreen);
+  // render(hru);
   //-Специальная функция для зацикливания requestAnimationFrame
   requestAnimationFrame(drawAll);
 }

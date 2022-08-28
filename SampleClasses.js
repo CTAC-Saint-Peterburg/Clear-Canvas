@@ -298,53 +298,53 @@ class Particle {
     return;
   }
 }
-class UserInterface {
-  constructor(settingsOBJ, renderArray) {
-    this.renderStatus = settingsOBJ.renderStatus;
-    this.x = settingsOBJ.x;
-    this.y = settingsOBJ.y;
-    this.sizeX = settingsOBJ.sizeX;
-    this.sizeY = settingsOBJ.sizeY;
-    this.color = settingsOBJ.color;
-    this.renderArray = renderArray;
-    this.renderArray.forEach((element) => {
+class Div {
+  constructor(style, array) {
+    this.render = style.render; // (Boolean)
+    this.x = style.x;
+    this.y = style.y;
+    this.width = style.width;
+    this.height = style.height;
+    this.color = style.color;
+    this.array = array;
+    this.array.forEach((element) => {
       element.x += this.x;
       element.y += this.y;
     });
     //state manager
     this.stateManagerFuncSettings = function () {
-      if (settingsOBJ != this.x) {
-        this.renderArray.forEach((element) => {
-          element.x -= settingsOBJ.x;
-          element.y -= settingsOBJ.y;
+      if (style.x != this.x) {
+        this.array.forEach((element) => {
+          element.x -= style.x;
+          element.y -= style.y;
           element.x += this.x;
           element.y += this.y;
         });
-        settingsOBJ.x = this.x;
-        settingsOBJ.y = this.y;
-        settingsOBJ.color = this.color;
-        settingsOBJ.sizeX = this.sizeX;
-        settingsOBJ.sizeY = this.sizeY;
+        style.x = this.x;
+        style.y = this.y;
+        style.color = this.color;
+        style.width = this.width;
+        style.height = this.height;
       }
     };
     //
     this.stateManagerFuncArray = function () {
-      if (this.renderArray != renderArray) {
-        this.renderArray = renderArray;
+      if (this.array != array) {
+        this.array = array;
       }
     };
     //-
   }
   draw() {
-    if (this.renderStatus) {
+    if (this.render) {
       this.stateManagerFuncSettings();
       this.stateManagerFuncArray();
       ctx.beginPath();
-      ctx.rect(this.x, this.y, this.sizeX, this.sizeY);
+      ctx.rect(this.x, this.y, this.width, this.height);
       ctx.fillStyle = this.color;
       ctx.fill();
       ctx.closePath();
-      render(this.renderArray);
+      render(this.array);
     } else return;
   }
 }

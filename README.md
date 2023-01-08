@@ -158,3 +158,9 @@
 2. Init first demo game build
 3. Add some style effects
 4. Fix samples
+
+---
+
+### Update v.0.2.0
+
+1. Init little refactoring
